@@ -20,7 +20,6 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -32,16 +31,27 @@
     .container {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 20px 56px;
+      padding: 24px 16px 48px;
+    }
+
+    .hero, .section-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
     }
 
     .hero {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 36px;
-      box-shadow: var(--shadow);
-      margin-bottom: 28px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-card {
+      padding: 24px;
     }
 
     .eyebrow {
@@ -50,7 +60,7 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     h1, h2, h3 {
@@ -59,77 +69,71 @@
     }
 
     h1 {
-      font-size: clamp(2.1rem, 4vw, 3.4rem);
-      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      margin-bottom: 8px;
     }
 
     h2 {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       margin-bottom: 14px;
     }
 
     h3 {
-      font-size: 1.08rem;
+      font-size: 1.04rem;
       margin-bottom: 8px;
     }
 
     .headline {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       color: var(--accent);
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .subtitle {
-      max-width: 760px;
       color: var(--muted);
-      margin: 0 0 18px 0;
-      font-size: 1rem;
+      margin: 0 0 16px 0;
+      max-width: 760px;
+    }
+
+    .hero-resume-actions,
+    .quick-links,
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 5;
     }
 
     .hero-resume-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 4px 0 18px 0;
-      position: relative;
-      z-index: 3;
+      margin: 8px 0 14px 0;
     }
 
     .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-      position: relative;
-      z-index: 3;
+      margin-top: 18px;
     }
 
-    .button {
+    a.button,
+    button.button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      text-decoration: none !important;
-      color: var(--text) !important;
-      -webkit-text-fill-color: var(--text);
-      background: var(--panel-soft);
-      border: 1px solid var(--border);
       padding: 11px 16px;
       border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      color: var(--text) !important;
+      -webkit-text-fill-color: var(--text);
+      text-decoration: none !important;
       font-weight: 700;
-      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      font-size: 0.98rem;
+      line-height: 1.2;
+      cursor: pointer;
       appearance: none;
       -webkit-appearance: none;
-      position: relative;
-      z-index: 3;
       white-space: nowrap;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      border-color: #cfd4dc;
-      background: #eef2f6;
     }
 
     a.button:visited,
@@ -143,52 +147,34 @@
       text-decoration: none !important;
     }
 
-    .section {
-      margin-top: 30px;
-    }
-
-    .section-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
     }
 
-    .card {
+    .card,
+    .resource-item {
       background: var(--panel-soft);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px;
     }
 
-    .card p,
-    .note,
-    .resource-item span,
-    footer {
-      color: var(--muted);
-    }
-
-    .card a,
-    .resource-item a.inline-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    iframe, video {
+    iframe,
+    video {
       width: 100%;
       aspect-ratio: 16 / 9;
       border: 0;
       border-radius: 16px;
       background: #d8dee6;
       display: block;
+    }
+
+    .note,
+    .resource-item span,
+    footer {
+      color: var(--muted);
     }
 
     .note {
@@ -206,24 +192,11 @@
       justify-content: space-between;
       gap: 16px;
       align-items: center;
-      background: var(--panel-soft);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
     }
 
     .resource-item strong {
       display: block;
       margin-bottom: 4px;
-    }
-
-    .resource-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      position: relative;
-      z-index: 3;
     }
 
     .modal {
@@ -278,10 +251,6 @@
       color: var(--text);
     }
 
-    .icon-button:hover {
-      background: #eef2f6;
-    }
-
     .pdf-frame {
       width: 100%;
       height: 100%;
@@ -292,7 +261,7 @@
 
     footer {
       text-align: center;
-      margin-top: 34px;
+      margin-top: 30px;
       font-size: 0.92rem;
     }
 
@@ -301,14 +270,18 @@
     }
 
     @media (max-width: 700px) {
-      .hero,
-      .section-card {
+      .hero, .section-card {
         padding: 20px;
       }
 
       .resource-item {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      a.button,
+      button.button {
+        white-space: normal;
       }
     }
   </style>
@@ -323,18 +296,15 @@
         <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
       </div>
       <div class="headline">Electromechanical Design | Electrical Engineer</div>
-      <p class="subtitle">
-        Clean recruiter-focused landing page with direct access to project demos, Onshape CAD workspaces,
-        and PCB design files.
-      </p>
+      <p class="subtitle">Landing page with direct access to project demos, Onshape CAD workspaces, and PCB design files.</p>
       <div class="quick-links">
         <a class="button" href="#competition-video">Competition Run</a>
         <a class="button" href="#scara-video">SCARA Videos</a>
         <a class="button" href="#local-demo">Motor Demo</a>
+        <a class="button" href="#printables">Modeling Portfolio</a>
         <a class="button" href="#cad-models">CAD Models</a>
-        <a class="button" href="#board-files">Board Files</a>
         <a class="button" href="#resume">Resume</a>
-        <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">Modeling Portfolio</a>
+        <a class="button" href="#board-files">Board Files</a>
       </div>
     </section>
 
@@ -390,15 +360,11 @@
       </div>
     </section>
 
-    
-
     <section class="section" id="printables">
       <div class="section-card">
         <h2>Modeling Portfolio</h2>
-        <p class="subtitle">
-          Collection of functional and mechanical designs published on Printables, demonstrating CAD development, practical design-for-manufacturing, and additive manufacturing workflows.
-        </p>
-        <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View Printables Portfolio</a>
+        <p class="subtitle">Collection of functional and mechanical designs published on Printables, demonstrating CAD development, practical design-for-manufacturing, and additive manufacturing workflows.</p>
+        <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View Modeling Portfolio</a>
       </div>
     </section>
 
@@ -451,6 +417,7 @@
     <section class="section" id="board-files">
       <div class="section-card">
         <h2>Board Design Files for Region 5 IEEE 2025 Champion Model</h2>
+        <p class="subtitle">Designed in KiCAD for two-plane milling process. DXF files from OnShape imported to KiCAD for 3D model integration.</p>
         <div class="resource-list">
           <div class="resource-item">
             <div>
@@ -506,9 +473,7 @@
       </div>
     </div>
 
-    <footer>
-      GitHub Pages-ready portfolio landing page.
-    </footer>
+    <footer>GitHub Pages-ready portfolio landing page.</footer>
   </div>
 
   <script>
