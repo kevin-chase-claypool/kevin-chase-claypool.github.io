@@ -3,42 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Kevin Chase Claypool | Portfolio</title>
 <style>
-body { font-family: Arial; background:#f5f7fa; padding:20px; }
-.section-card { background:#fff; padding:20px; border-radius:16px; }
-.grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+body { font-family: Arial, Helvetica, sans-serif; background:#f5f7fa; margin:0; }
+.container { max-width:1100px; margin:auto; padding:20px; }
+.section-card { background:#fff; padding:20px; border-radius:18px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
 .card { background:#f8fafc; padding:16px; border-radius:12px; }
-iframe { width:100%; aspect-ratio:16/9; border-radius:12px; border:0; }
+iframe, video { width:100%; aspect-ratio:16/9; border-radius:12px; border:0; }
+h1,h2,h3 { margin-top:0; }
 </style>
 </head>
 <body>
 
-<section class="section" id="scara-video">
-  <div class="section-card">
-    <h2>SCARA System</h2>
+<div class="container">
 
-    <p>
-      SCARA electromechanical design project with motion demonstration and a separate research presentation.
-    </p>
+<h1>Kevin Chase Claypool</h1>
 
-    <div class="grid">
+<!-- Competition -->
+<div class="section-card">
+<h2>2026 Region 5 IEEE Robotics Competition - Winning Run</h2>
+<iframe src="https://www.youtube.com/embed/jFPaF9YfIjM" allowfullscreen></iframe>
+<p>Winning competition run video.</p>
+</div>
 
-      <article class="card">
-        <h3>Motion Demonstration</h3>
-        <iframe src="https://www.youtube.com/embed/ozlDDVAi7mo" allowfullscreen></iframe>
-        <p>Motion demonstration of the SCARA system.</p>
-      </article>
+<!-- SCARA (FIXED) -->
+<div class="section-card">
+<h2>SCARA System</h2>
+<p>SCARA electromechanical design project with motion demonstration and a separate research presentation.</p>
 
-      <article class="card">
-        <h3>Research Presentation</h3>
-        <iframe src="https://www.youtube.com/embed/sFqKUF_yAus" allowfullscreen></iframe>
-        <p>Formal research presentation covering design and system architecture.</p>
-      </article>
+<div class="grid">
 
-    </div>
-  </div>
-</section>
+<article class="card">
+<h3>System Demonstration</h3>
+<iframe src="https://www.youtube.com/embed/ozlDDVAi7mo" allowfullscreen></iframe>
+<p>Motion demonstration of the SCARA system.</p>
+</article>
+
+<article class="card">
+<h3>Technical Presentation</h3>
+<iframe src="https://www.youtube.com/embed/sFqKUF_yAus" allowfullscreen></iframe>
+<p>Formal research presentation covering design and system architecture.</p>
+</article>
+
+</div>
+</div>
+
+<!-- Axial Motor -->
+<div class="section-card">
+<h2>Axial Pulse Motor Control System</h2>
+<video controls>
+<source src="assets/PXL_20250501_201354126.mp4" type="video/mp4">
+</video>
+</div>
+
+</div>
 
 </body>
 </html>
