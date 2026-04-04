@@ -12,10 +12,11 @@
       --text: #111827;
       --muted: #667085;
       --accent: #1f4f8f;
+      --accent-soft: #eaf2fb;
       --border: #e4e7ec;
       --shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
       --radius: 18px;
-      --max: 1080px;
+      --max: 1120px;
     }
 
     * { box-sizing: border-box; }
@@ -34,7 +35,9 @@
       padding: 24px 16px 48px;
     }
 
-    .hero, .section-card {
+    .hero,
+    .section-card,
+    .project-card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 22px;
@@ -79,7 +82,7 @@
     }
 
     h3 {
-      font-size: 1.04rem;
+      font-size: 1.15rem;
       margin-bottom: 8px;
     }
 
@@ -90,15 +93,23 @@
       margin-bottom: 10px;
     }
 
-    .subtitle {
+    .subtitle,
+    .project-summary,
+    .resource-item span,
+    footer,
+    .project-meta {
       color: var(--muted);
+    }
+
+    .subtitle {
       margin: 0 0 16px 0;
       max-width: 760px;
     }
 
     .hero-resume-actions,
     .quick-links,
-    .resource-actions {
+    .resource-actions,
+    .project-links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -147,22 +158,24 @@
       text-decoration: none !important;
     }
 
-    .grid {
+    .projects-stack {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      gap: 18px;
     }
 
-    .card,
-    .resource-item {
-      background: var(--panel-soft);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
+    .project-card {
+      padding: 22px;
     }
 
-    iframe,
-    video {
+    .project-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project-media iframe,
+    .project-media video {
       width: 100%;
       aspect-ratio: 16 / 9;
       border: 0;
@@ -171,15 +184,52 @@
       display: block;
     }
 
-    .note,
-    .resource-item span,
-    footer {
+    .project-media p {
+      margin: 10px 0 0;
+      font-size: 0.95rem;
       color: var(--muted);
     }
 
-    .note {
+    .project-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-side-panel {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .project-side-panel h4 {
+      margin: 0 0 10px;
+      font-size: 0.98rem;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    .project-bullets {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .project-bullets li + li {
+      margin-top: 8px;
+    }
+
+    .placeholder {
+      color: #475467;
+    }
+
+    .helper-note {
       margin-top: 10px;
-      font-size: 0.95rem;
+      padding: 10px 12px;
+      background: var(--accent-soft);
+      border: 1px dashed #bdd0ea;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: #24456d;
     }
 
     .resource-list {
@@ -192,6 +242,10 @@
       justify-content: space-between;
       gap: 16px;
       align-items: center;
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
     }
 
     .resource-item strong {
@@ -269,8 +323,16 @@
       overflow: hidden;
     }
 
+    @media (max-width: 900px) {
+      .project-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 700px) {
-      .hero, .section-card {
+      .hero,
+      .section-card,
+      .project-card {
         padding: 20px;
       }
 
@@ -296,67 +358,141 @@
         <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
       </div>
       <div class="headline">Electromechanical Design | Electrical Engineer</div>
-      <p class="subtitle">Landing page with direct access to project demos, Onshape CAD workspaces, and PCB design files.</p>
+      <p class="subtitle">Landing page with project media, CAD workspaces, board design files, and editable contribution bullet lists for each major project.</p>
       <div class="quick-links">
-        <a class="button" href="#competition-video">Competition Run</a>
-        <a class="button" href="#scara-video">SCARA Videos</a>
-        <a class="button" href="#local-demo">Motor Demo</a>
+        <a class="button" href="#projects">Projects</a>
         <a class="button" href="#printables">Modeling Portfolio</a>
         <a class="button" href="#cad-models">CAD Models</a>
-        <a class="button" href="#resume">Resume</a>
         <a class="button" href="#board-files">Board Files</a>
+        <a class="button" href="#resume">Resume</a>
       </div>
     </section>
 
-    <section class="section" id="competition-video">
+    <section class="section" id="projects">
       <div class="section-card">
-        <h2>2026 Region 5 IEEE Robotics Competition - Winning Run</h2>
-        <iframe
-          src="https://www.youtube.com/embed/jFPaF9YfIjM"
-          title="2026 Region 5 IEEE Robotics Competition - Winning Run"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-        <p class="note">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
-      </div>
-    </section>
+        <div class="eyebrow">Featured Work</div>
+        <h2>Project Portfolio</h2>
+        <p class="subtitle">Each project now includes a dedicated contribution panel so you can quickly edit your own responsibilities in a text editor later. Replace the placeholder bullets with your exact tasks, tools, and technical ownership.</p>
 
-    <section class="section" id="scara-video">
-      <div class="section-card">
-        <h2>SCARA Videos</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>SCARA Movement Video</h3>
-            <iframe
-              src="https://www.youtube.com/embed/ozlDDVAi7mo"
-              title="SCARA Movement Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-            <p class="note">Motion demonstration of the SCARA system.</p>
+        <div class="projects-stack">
+          <article class="project-card" id="competition-video">
+            <div class="project-layout">
+              <div class="project-media">
+                <iframe
+                  src="https://www.youtube.com/embed/jFPaF9YfIjM"
+                  title="2026 Region 5 IEEE Robotics Competition - Winning Run"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+                <p>Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
+              </div>
+              <div class="project-side">
+                <div>
+                  <h3>2026 Region 5 IEEE Robotics Competition Champion Robot</h3>
+                  <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
+                </div>
+                <div class="project-side-panel">
+                  <h4>My Involvement</h4>
+                  <ul class="project-bullets">
+                    <li class="placeholder">Designed and integrated ________________________________.</li>
+                    <li class="placeholder">Developed/tested _____________________________________.</li>
+                    <li class="placeholder">Led troubleshooting for ______________________________.</li>
+                    <li class="placeholder">Validated performance by ______________________________.</li>
+                  </ul>
+                  <div class="helper-note">Edit these bullets directly in the HTML for your exact contribution statements.</div>
+                </div>
+              </div>
+            </div>
           </article>
-          <article class="card">
-            <h3>SCARA Research Talk</h3>
-            <iframe
-              src="https://www.youtube.com/embed/sFqKUF_yAus"
-              title="SCARA Research Talk"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-            <p class="note">Research presentation covering the SCARA project.</p>
+
+          <article class="project-card" id="scara-video">
+            <div class="project-layout">
+              <div class="project-media">
+                <iframe
+                  src="https://www.youtube.com/embed/ozlDDVAi7mo"
+                  title="SCARA Movement Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+                <p>Motion demonstration of the SCARA system. Research talk remains linked in the project resources.</p>
+              </div>
+              <div class="project-side">
+                <div>
+                  <h3>SCARA Robot</h3>
+                  <p class="project-summary">SCARA electromechanical design project with motion demonstration and a separate research presentation.</p>
+                </div>
+                <div class="project-side-panel">
+                  <h4>My Involvement</h4>
+                  <ul class="project-bullets">
+                    <li class="placeholder">Modeled _____________________________________________ in CAD.</li>
+                    <li class="placeholder">Selected/sized _______________________________________.</li>
+                    <li class="placeholder">Built or assembled ___________________________________.</li>
+                    <li class="placeholder">Presented research on ________________________________.</li>
+                  </ul>
+                </div>
+                <div class="project-links">
+                  <a class="button" href="https://www.youtube.com/watch?v=sFqKUF_yAus" target="_blank" rel="noopener noreferrer">Research Talk</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" id="local-demo">
+            <div class="project-layout">
+              <div class="project-media">
+                <video controls>
+                  <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <p>Demonstration of axial pulse motor control system operation.</p>
+              </div>
+              <div class="project-side">
+                <div>
+                  <h3>Axial Pulse Motor Control System</h3>
+                  <p class="project-summary">Electromechanical motor prototype with control, fabrication, and test workflow captured in video and CAD.</p>
+                </div>
+                <div class="project-side-panel">
+                  <h4>My Involvement</h4>
+                  <ul class="project-bullets">
+                    <li class="placeholder">Designed the _________________________________________ control system.</li>
+                    <li class="placeholder">Created/tested ________________________________________ hardware.</li>
+                    <li class="placeholder">Implemented _________________________________________ sensing or firmware.</li>
+                    <li class="placeholder">Measured ____________________________________________ to improve performance.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" id="xy-plotter-project">
+            <div class="project-layout">
+              <div class="project-media">
+                <div class="project-side-panel">
+                  <h4>Project Link</h4>
+                  <p class="project-meta">This project currently appears as a CAD workspace. The layout below gives it the same editable contribution structure as your media-based projects.</p>
+                  <div class="project-links">
+                    <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open XY Plotter CAD</a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-side">
+                <div>
+                  <h3>XY Plotter</h3>
+                  <p class="project-summary">Controller-driven motion platform and mechanical design workspace.</p>
+                </div>
+                <div class="project-side-panel">
+                  <h4>My Involvement</h4>
+                  <ul class="project-bullets">
+                    <li class="placeholder">Designed _____________________________________________ motion hardware.</li>
+                    <li class="placeholder">Integrated ____________________________________________ electronics or drivers.</li>
+                    <li class="placeholder">Programmed __________________________________________ control behavior.</li>
+                    <li class="placeholder">Iterated the design to solve __________________________.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="local-demo">
-      <div class="section-card">
-        <h2>Axial Pulse Motor Control System</h2>
-        <video controls>
-          <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <p class="note">Demonstration of axial pulse motor control system operation.</p>
       </div>
     </section>
 
@@ -371,37 +507,51 @@
     <section class="section" id="cad-models">
       <div class="section-card">
         <h2>Onshape CAD Models</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>SCARA</h3>
-            <p>SCARA electromechanical design model in Onshape.</p>
-            <p><a href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open model</a></p>
-          </article>
-          <article class="card">
-            <h3>Axial Pulse Motor Control System</h3>
-            <p>Axial pulse motor control system design and electromechanical workspace.</p>
-            <p><a href="https://cad.onshape.com/documents/2582fc382ed1347440451cda/w/546e91bbf5b500bdd3ecb9f7/e/a798fbc582b7bb6c99fd3416" target="_blank" rel="noopener noreferrer">Open model</a></p>
-          </article>
-          <article class="card">
-            <h3>XY Plotter</h3>
-            <p>XY plotter mechanical design workspace for precision motion development.</p>
-            <p><a href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open model</a></p>
-          </article>
-          <article class="card">
-            <h3>Region 5 IEEE 2026 Champion Model</h3>
-            <p>Competition robot CAD model associated with the Region 5 IEEE 2026 champion design.</p>
-            <p><a href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open model</a></p>
-          </article>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div>
+              <strong>SCARA</strong>
+              <span>SCARA mechanical design model in Onshape using a slew bearing solution.</span>
+            </div>
+            <div class="resource-actions">
+              <a class="button" href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open Model</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>Axial Pulse Motor Control System</strong>
+              <span>Axial pulse motor control system design and electromechanical workspace.</span>
+            </div>
+            <div class="resource-actions">
+              <a class="button" href="https://cad.onshape.com/documents/2582fc382ed1347440451cda/w/546e91bbf5b500bdd3ecb9f7/e/a798fbc582b7bb6c99fd3416" target="_blank" rel="noopener noreferrer">Open Model</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>XY Plotter</strong>
+              <span>XY plotter mechanical design workspace for controller-driven motion project.</span>
+            </div>
+            <div class="resource-actions">
+              <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open Model</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>Region 5 IEEE 2026 Champion Model</strong>
+              <span>Competition robot CAD model associated with the Region 5 IEEE 2026 champion design.</span>
+            </div>
+            <div class="resource-actions">
+              <a class="button" href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open Model</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    
-
     <section class="section" id="board-files">
       <div class="section-card">
         <h2>Board Design Files for Region 5 IEEE 2026 Champion Model</h2>
-        <p class="subtitle">Designed in KiCAD for two-plane milling process. DXF files from OnShape imported to KiCAD for 3D model integration.</p>
+        <p class="subtitle">Designed in KiCAD for a two-plane milling process. DXF files from Onshape were imported into KiCAD for 3D model integration.</p>
         <div class="resource-list">
           <div class="resource-item">
             <div>
@@ -447,14 +597,14 @@
       </div>
     </section>
 
-<section class="section" id="resume">
+    <section class="section" id="resume">
       <div class="section-card">
         <h2>Resume</h2>
         <div class="resource-list">
           <div class="resource-item">
             <div>
               <strong>Kevin Claypool Resume</strong>
-              <span>Preview in-page or open/download the PDF.</span>
+              <span>Preview in-page or open the PDF.</span>
             </div>
             <div class="resource-actions">
               <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview</button>
