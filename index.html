@@ -1,63 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kevin Chase Claypool | Portfolio</title>
-<style>
-body { font-family: Arial, Helvetica, sans-serif; background:#f5f7fa; margin:0; }
-.container { max-width:1100px; margin:auto; padding:20px; }
-.section-card { background:#fff; padding:20px; border-radius:18px; margin-bottom:20px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
-.card { background:#f8fafc; padding:16px; border-radius:12px; }
-iframe, video { width:100%; aspect-ratio:16/9; border-radius:12px; border:0; }
-h1,h2,h3 { margin-top:0; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin Chase Claypool | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --panel-soft: #f8fafc;
+      --text: #111827;
+      --muted: #667085;
+      --accent: #1f4f8f;
+      --border: #e4e7ec;
+      --shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .hero, .section-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-card {
+      padding: 24px;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.04rem;
+      margin-bottom: 8px;
+    }
+
+    .headline {
+      font-size: 1.08rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 16px 0;
+      max-width: 760px;
+    }
+
+    .hero-resume-actions,
+    .quick-links,
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-resume-actions {
+      margin: 8px 0 14px 0;
+    }
+
+    .quick-links {
+      margin-top: 18px;
+    }
+
+    a.button,
+    button.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      color: var(--text) !important;
+      -webkit-text-fill-color: var(--text);
+      text-decoration: none !important;
+      font-weight: 700;
+      font-size: 0.98rem;
+      line-height: 1.2;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      white-space: nowrap;
+    }
+
+    a.button:visited,
+    a.button:hover,
+    a.button:active,
+    a.button:focus,
+    button.button:hover,
+    button.button:focus {
+      color: var(--text) !important;
+      -webkit-text-fill-color: var(--text);
+      text-decoration: none !important;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card,
+    .resource-item {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    iframe,
+    video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 16px;
+      background: #d8dee6;
+      display: block;
+    }
+
+    .note,
+    .resource-item span,
+    footer {
+      color: var(--muted);
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .resource-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .resource-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(17, 24, 39, 0.58);
+      padding: 18px;
+      z-index: 1000;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: min(1100px, 100%);
+      height: min(88vh, 900px);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(16, 24, 40, 0.22);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel-soft);
+    }
+
+    .modal-title {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .icon-button {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #f3f4f6;
+      flex: 1;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.92rem;
+    }
+
+    body.modal-active {
+      overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+      .hero, .section-card {
+        padding: 20px;
+      }
+
+      .resource-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      a.button,
+      button.button {
+        white-space: normal;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <section class="hero">
+      <div class="eyebrow">Portfolio</div>
+      <h1>Kevin Chase Claypool</h1>
+      <div class="hero-resume-actions">
+        <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview Resume</button>
+        <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+      </div>
+      <div class="headline">Electromechanical Design | Electrical Engineer</div>
+      <p class="subtitle">Landing page with direct access to project demos, Onshape CAD workspaces, and PCB design files.</p>
+      <div class="quick-links">
+        <a class="button" href="#competition-video">Competition Run</a>
+        <a class="button" href="#scara-video">SCARA Videos</a>
+        <a class="button" href="#local-demo">Motor Demo</a>
+        <a class="button" href="#printables">Modeling Portfolio</a>
+        <a class="button" href="#cad-models">CAD Models</a>
+        <a class="button" href="#resume">Resume</a>
+        <a class="button" href="#board-files">Board Files</a>
+      </div>
+    </section>
 
-<div class="container">
+    <section class="section" id="competition-video">
+      <div class="section-card">
+        <h2>2026 Region 5 IEEE Robotics Competition - Winning Run</h2>
+        <iframe
+          src="https://www.youtube.com/embed/jFPaF9YfIjM"
+          title="2026 Region 5 IEEE Robotics Competition - Winning Run"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+        <p class="note">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
+      </div>
+    </section>
 
-<h1>Kevin Chase Claypool</h1>
+    <section class="section" id="scara-video">
+      <div class="section-card">
+        <h2>SCARA Videos</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>System Demonstration</h3>
+            <iframe
+              src="https://www.youtube.com/embed/ozlDDVAi7mo"
+              title="SCARA Movement Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+            <p class="note">Motion demonstration of the SCARA system.</p>
+          </article>
+          <article class="card">
+            <h3>Technical Presentation</h3>
+            <iframe
+              src="https://www.youtube.com/embed/sFqKUF_yAus"
+              title="SCARA Research Talk"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+            <p class="note">Formal research presentation covering design, analysis, and system architecture.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- Competition -->
-<div class="section-card">
-<h2>2026 Region 5 IEEE Robotics Competition - Winning Run</h2>
-<iframe src="https://www.youtube.com/embed/jFPaF9YfIjM" allowfullscreen></iframe>
-<p>Winning competition run video.</p>
-</div>
+    <section class="section" id="local-demo">
+      <div class="section-card">
+        <h2>Axial Pulse Motor Control System</h2>
+        <video controls>
+          <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p class="note">Demonstration of axial pulse motor control system operation.</p>
+      </div>
+    </section>
 
-<!-- SCARA (FIXED) -->
-<div class="section-card">
-<h2>SCARA System</h2>
-<p>SCARA electromechanical design project with motion demonstration and a separate research presentation.</p>
+    <section class="section" id="printables">
+      <div class="section-card">
+        <h2>Modeling Portfolio</h2>
+        <p class="subtitle">Collection of functional and mechanical designs published on Printables, demonstrating CAD development, practical design-for-manufacturing, and additive manufacturing workflows.</p>
+        <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View Modeling Portfolio</a>
+      </div>
+    </section>
 
-<div class="grid">
+    <section class="section" id="cad-models">
+      <div class="section-card">
+        <h2>Onshape CAD Models</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>SCARA</h3>
+            <p>SCARA mechanical design model in Onshape using slew bearing solution.</p>
+            <p><a href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open model</a></p>
+          </article>
+          <article class="card">
+            <h3>Axial Pulse Motor Control System</h3>
+            <p>Axial pulse motor control system design and electromechanical workspace.</p>
+            <p><a href="https://cad.onshape.com/documents/2582fc382ed1347440451cda/w/546e91bbf5b500bdd3ecb9f7/e/a798fbc582b7bb6c99fd3416" target="_blank" rel="noopener noreferrer">Open model</a></p>
+          </article>
+          <article class="card">
+            <h3>XY Plotter</h3>
+            <p>XY plotter mechanical design workspace for controller-driven motion project.</p>
+            <p><a href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open model</a></p>
+          </article>
+          <article class="card">
+            <h3>Region 5 IEEE 2026 Champion Model</h3>
+            <p>Competition robot CAD model associated with the Region 5 IEEE 2026 champion design.</p>
+            <p><a href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open model</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<article class="card">
-<h3>System Demonstration</h3>
-<iframe src="https://www.youtube.com/embed/ozlDDVAi7mo" allowfullscreen></iframe>
-<p>Motion demonstration of the SCARA system.</p>
-</article>
+    <section class="section" id="board-files">
+      <div class="section-card">
+        <h2>Board Design Files for Region 5 IEEE 2026 Champion Model</h2>
+        <p class="subtitle">Designed in KiCAD for two-plane milling process. DXF files from OnShape imported to KiCAD for 3D model integration.</p>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div>
+              <strong>Main Board Schematic</strong>
+              <span>Preview in-page or open the source PDF directly.</span>
+            </div>
+            <div class="resource-actions">
+              <button class="button preview-button" type="button" data-pdf="assets/mainboard2.pdf" data-title="Main Board Schematic">Preview</button>
+              <a class="button" href="assets/mainboard2.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>Main Board PCB Layout</strong>
+              <span>Preview in-page or open the source PDF directly.</span>
+            </div>
+            <div class="resource-actions">
+              <button class="button preview-button" type="button" data-pdf="assets/mainboard2_PCB.pdf" data-title="Main Board PCB Layout">Preview</button>
+              <a class="button" href="assets/mainboard2_PCB.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>Buck Board Schematic</strong>
+              <span>Preview in-page or open the source PDF directly.</span>
+            </div>
+            <div class="resource-actions">
+              <button class="button preview-button" type="button" data-pdf="assets/buckboard.pdf" data-title="Buck Board Schematic">Preview</button>
+              <a class="button" href="assets/buckboard.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div>
+              <strong>Buck Board PCB Layout</strong>
+              <span>Preview in-page or open the source PDF directly.</span>
+            </div>
+            <div class="resource-actions">
+              <button class="button preview-button" type="button" data-pdf="assets/buckboard_PCB.pdf" data-title="Buck Board PCB Layout">Preview</button>
+              <a class="button" href="assets/buckboard_PCB.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<article class="card">
-<h3>Technical Presentation</h3>
-<iframe src="https://www.youtube.com/embed/sFqKUF_yAus" allowfullscreen></iframe>
-<p>Formal research presentation covering design and system architecture.</p>
-</article>
+    <section class="section" id="resume">
+      <div class="section-card">
+        <h2>Resume</h2>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div>
+              <strong>Kevin Claypool Resume</strong>
+              <span>Preview in-page or open/download the PDF.</span>
+            </div>
+            <div class="resource-actions">
+              <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview</button>
+              <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
-</div>
+    <div class="modal" id="pdfModal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+        <div class="modal-header">
+          <div class="modal-title" id="pdfModalTitle">PDF Preview</div>
+          <button class="icon-button" type="button" id="closeModal">Close</button>
+        </div>
+        <iframe class="pdf-frame" id="pdfFrame" title="PDF preview"></iframe>
+      </div>
+    </div>
 
-<!-- Axial Motor -->
-<div class="section-card">
-<h2>Axial Pulse Motor Control System</h2>
-<video controls>
-<source src="assets/PXL_20250501_201354126.mp4" type="video/mp4">
-</video>
-</div>
+    <footer>GitHub Pages-ready portfolio landing page.</footer>
+  </div>
 
-</div>
+  <script>
+    const modal = document.getElementById('pdfModal');
+    const frame = document.getElementById('pdfFrame');
+    const title = document.getElementById('pdfModalTitle');
+    const closeButton = document.getElementById('closeModal');
+    const previewButtons = document.querySelectorAll('.preview-button');
 
+    function openModal(pdfPath, pdfTitle) {
+      frame.src = pdfPath;
+      title.textContent = pdfTitle;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      frame.src = '';
+      document.body.classList.remove('modal-active');
+    }
+
+    previewButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        openModal(button.dataset.pdf, button.dataset.title);
+      });
+    });
+
+    closeButton.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
