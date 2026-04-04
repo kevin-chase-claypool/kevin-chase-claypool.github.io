@@ -174,12 +174,23 @@
       align-items: start;
     }
 
+    .project-main {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .project-header {
+      display: grid;
+      gap: 10px;
+    }
+
     .project-media iframe,
     .project-media video {
       width: 100%;
       aspect-ratio: 16 / 9;
       border: 0;
-      border-radius: 16px;
+      border-radius: 20px;
       background: #d8dee6;
       display: block;
     }
@@ -191,15 +202,15 @@
     }
 
     .project-side {
-      display: grid;
-      gap: 14px;
+      display: block;
     }
 
     .project-side-panel {
       background: var(--panel-soft);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 100%;
     }
 
     .project-side-panel h4 {
@@ -375,22 +386,25 @@
         <p class="subtitle">Each project now includes a dedicated contribution panel so you can quickly edit your own responsibilities in a text editor later. Replace the placeholder bullets with your exact tasks, tools, and technical ownership.</p>
 
         <div class="projects-stack">
+          
           <article class="project-card" id="competition-video">
             <div class="project-layout">
-              <div class="project-media">
-                <iframe
-                  src="https://www.youtube.com/embed/jFPaF9YfIjM"
-                  title="2026 Region 5 IEEE Robotics Competition - Winning Run"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen>
-                </iframe>
-                <p>Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
-              </div>
-              <div class="project-side">
-                <div>
+              <div class="project-main">
+                <div class="project-header">
                   <h3>2026 Region 5 IEEE Robotics Competition Champion Robot</h3>
                   <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
                 </div>
+                <div class="project-media">
+                  <iframe
+                    src="https://www.youtube.com/embed/jFPaF9YfIjM"
+                    title="2026 Region 5 IEEE Robotics Competition - Winning Run"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                  </iframe>
+                  <p>Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
+                </div>
+              </div>
+              <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
@@ -407,20 +421,25 @@
 
           <article class="project-card" id="scara-video">
             <div class="project-layout">
-              <div class="project-media">
-                <iframe
-                  src="https://www.youtube.com/embed/ozlDDVAi7mo"
-                  title="SCARA Movement Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen>
-                </iframe>
-                <p>Motion demonstration of the SCARA system. Research talk remains linked in the project resources.</p>
-              </div>
-              <div class="project-side">
-                <div>
+              <div class="project-main">
+                <div class="project-header">
                   <h3>SCARA Robot</h3>
                   <p class="project-summary">SCARA electromechanical design project with motion demonstration and a separate research presentation.</p>
+                  <div class="project-links">
+                    <a class="button" href="https://www.youtube.com/watch?v=sFqKUF_yAus" target="_blank" rel="noopener noreferrer">Research Talk</a>
+                  </div>
                 </div>
+                <div class="project-media">
+                  <iframe
+                    src="https://www.youtube.com/embed/ozlDDVAi7mo"
+                    title="SCARA Movement Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                  </iframe>
+                  <p>Motion demonstration of the SCARA system. Research talk remains linked in the project resources.</p>
+                </div>
+              </div>
+              <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
@@ -430,27 +449,26 @@
                     <li class="placeholder">Presented research on ________________________________.</li>
                   </ul>
                 </div>
-                <div class="project-links">
-                  <a class="button" href="https://www.youtube.com/watch?v=sFqKUF_yAus" target="_blank" rel="noopener noreferrer">Research Talk</a>
-                </div>
               </div>
             </div>
           </article>
 
           <article class="project-card" id="local-demo">
             <div class="project-layout">
-              <div class="project-media">
-                <video controls>
-                  <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <p>Demonstration of axial pulse motor control system operation.</p>
-              </div>
-              <div class="project-side">
-                <div>
+              <div class="project-main">
+                <div class="project-header">
                   <h3>Axial Pulse Motor Control System</h3>
                   <p class="project-summary">Electromechanical motor prototype with control, fabrication, and test workflow captured in video and CAD.</p>
                 </div>
+                <div class="project-media">
+                  <video controls>
+                    <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>Demonstration of axial pulse motor control system operation.</p>
+                </div>
+              </div>
+              <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
@@ -466,20 +484,25 @@
 
           <article class="project-card" id="xy-plotter-project">
             <div class="project-layout">
-              <div class="project-media">
-                <div class="project-side-panel">
-                  <h4>Project Link</h4>
-                  <p class="project-meta">This project currently appears as a CAD workspace. The layout below gives it the same editable contribution structure as your media-based projects.</p>
+              <div class="project-main">
+                <div class="project-header">
+                  <h3>XY Plotter</h3>
+                  <p class="project-summary">Controller-driven motion platform and mechanical design workspace.</p>
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open XY Plotter CAD</a>
                   </div>
                 </div>
+                <div class="project-media">
+                  <div class="project-side-panel">
+                    <h4>Project Link</h4>
+                    <p class="project-meta">This project currently appears as a CAD workspace. The layout below gives it the same editable contribution structure as your media-based projects.</p>
+                    <div class="project-links">
+                      <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open XY Plotter CAD</a>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="project-side">
-                <div>
-                  <h3>XY Plotter</h3>
-                  <p class="project-summary">Controller-driven motion platform and mechanical design workspace.</p>
-                </div>
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
@@ -492,7 +515,7 @@
               </div>
             </div>
           </article>
-        </div>
+</div>
       </div>
     </section>
 
