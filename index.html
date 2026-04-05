@@ -193,13 +193,15 @@
     }
 
     .project-media iframe,
-    .project-media video {
+    .project-media video,
+    .project-media img {
       width: 100%;
       aspect-ratio: 16 / 9;
       border: 0;
       border-radius: 20px;
       background: #d8dee6;
       display: block;
+      object-fit: cover;
     }
 
     .project-media p {
@@ -384,12 +386,14 @@
       transform: rotate(45deg);
     }
 
-    .hover-popup-media video {
+    .hover-popup-media video,
+    .hover-popup-media img {
       width: 100%;
       aspect-ratio: 16 / 9;
       border-radius: 16px;
       display: block;
       background: #d8dee6;
+      object-fit: contain;
     }
 
     .hover-popup-copy h4 {
@@ -573,6 +577,19 @@
                   <div class="project-links">
                     <a class="button" href="https://www.youtube.com/watch?v=sFqKUF_yAus" target="_blank" rel="noopener noreferrer">Technical Presentation</a>
                     <a class="button" href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+
+                    <div class="hover-popup-wrap">
+                      <span class="hover-popup-trigger" tabindex="0">Exploded View</span>
+                      <div class="hover-popup-panel">
+                        <div class="hover-popup-media">
+                          <img src="assets/scara_exploded.png" alt="Exploded view of the SCARA robot assembly" />
+                        </div>
+                        <div class="hover-popup-copy">
+                          <h4>SCARA Exploded View</h4>
+                          <p>Exploded assembly view showing the structural layout and major components of the SCARA robot model.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="project-media">
