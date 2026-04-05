@@ -146,6 +146,7 @@
       appearance: none;
       -webkit-appearance: none;
       white-space: nowrap;
+      font-family: inherit;
     }
 
     a.button:visited,
@@ -242,16 +243,6 @@
       color: #475467;
     }
 
-    .helper-note {
-      margin-top: 10px;
-      padding: 10px 12px;
-      background: var(--accent-soft);
-      border: 1px dashed #bdd0ea;
-      border-radius: 12px;
-      font-size: 0.92rem;
-      color: #24456d;
-    }
-
     .resource-list {
       display: grid;
       gap: 12px;
@@ -323,6 +314,7 @@
       font-weight: 700;
       cursor: pointer;
       color: var(--text);
+      font-family: inherit;
     }
 
     .pdf-frame {
@@ -416,6 +408,48 @@
 
     .hover-popup-copy li + li {
       margin-top: 8px;
+    }
+
+    .hover-popup-note {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .media-modal-panel {
+      width: min(1200px, 100%);
+      max-height: min(92vh, 980px);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(16, 24, 40, 0.22);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-modal-body {
+      padding: 16px;
+      background: #ffffff;
+      overflow: auto;
+    }
+
+    .media-modal-content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 320px;
+    }
+
+    .media-modal-content img,
+    .media-modal-content video {
+      max-width: 100%;
+      max-height: calc(92vh - 110px);
+      border-radius: 16px;
+      background: #d8dee6;
+      display: block;
     }
 
     footer {
@@ -520,7 +554,14 @@
                     <a class="button" href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
 
                     <div class="hover-popup-wrap">
-                      <span class="hover-popup-trigger" tabindex="0">Bin Subsystem View</span>
+                      <button
+                        class="hover-popup-trigger"
+                        type="button"
+                        data-media-type="video"
+                        data-media-src="assets/Recording 2026-04-05 095559.mp4"
+                        data-media-title="IEEE Robot Bin Subsystem View">
+                        Bin Subsystem View
+                      </button>
                       <div class="hover-popup-panel">
                         <div class="hover-popup-media">
                           <video controls autoplay muted loop playsinline preload="metadata">
@@ -537,6 +578,7 @@
                             <li>Servo simultaneously expands the ball retention space.</li>
                             <li>Servo mechanism also holds the bins so the robot can move them around the game field.</li>
                           </ul>
+                          <div class="hover-popup-note">Click “Bin Subsystem View” to open a larger version.</div>
                         </div>
                       </div>
                     </div>
@@ -579,7 +621,14 @@
                     <a class="button" href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
 
                     <div class="hover-popup-wrap">
-                      <span class="hover-popup-trigger" tabindex="0">Exploded View</span>
+                      <button
+                        class="hover-popup-trigger"
+                        type="button"
+                        data-media-type="image"
+                        data-media-src="assets/scara_exploded.png"
+                        data-media-title="SCARA Exploded View">
+                        Exploded View
+                      </button>
                       <div class="hover-popup-panel">
                         <div class="hover-popup-media">
                           <img src="assets/scara_exploded.png" alt="Exploded view of the SCARA robot assembly" />
@@ -587,6 +636,7 @@
                         <div class="hover-popup-copy">
                           <h4>SCARA Exploded View</h4>
                           <p>Exploded assembly view showing the structural layout and major components of the SCARA robot model.</p>
+                          <div class="hover-popup-note">Click “Exploded View” to open a larger version.</div>
                         </div>
                       </div>
                     </div>
@@ -763,9 +813,21 @@
       <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
         <div class="modal-header">
           <div class="modal-title" id="pdfModalTitle">PDF Preview</div>
-          <button class="icon-button" type="button" id="closeModal">Close</button>
+          <button class="icon-button" type="button" id="closePdfModal">Close</button>
         </div>
         <iframe class="pdf-frame" id="pdfFrame" title="PDF preview"></iframe>
+      </div>
+    </div>
+
+    <div class="modal" id="mediaModal" aria-hidden="true">
+      <div class="media-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mediaModalTitle">
+        <div class="modal-header">
+          <div class="modal-title" id="mediaModalTitle">Media Preview</div>
+          <button class="icon-button" type="button" id="closeMediaModal">Close</button>
+        </div>
+        <div class="media-modal-body">
+          <div class="media-modal-content" id="mediaModalContent"></div>
+        </div>
       </div>
     </div>
 
@@ -773,44 +835,109 @@
   </div>
 
   <script>
-    const modal = document.getElementById('pdfModal');
-    const frame = document.getElementById('pdfFrame');
-    const title = document.getElementById('pdfModalTitle');
-    const closeButton = document.getElementById('closeModal');
+    const body = document.body;
+
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const pdfTitle = document.getElementById('pdfModalTitle');
+    const closePdfButton = document.getElementById('closePdfModal');
     const previewButtons = document.querySelectorAll('.preview-button');
 
-    function openModal(pdfPath, pdfTitle) {
-      frame.src = pdfPath;
-      title.textContent = pdfTitle;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('modal-active');
+    const mediaModal = document.getElementById('mediaModal');
+    const mediaModalTitle = document.getElementById('mediaModalTitle');
+    const mediaModalContent = document.getElementById('mediaModalContent');
+    const closeMediaButton = document.getElementById('closeMediaModal');
+    const mediaTriggers = document.querySelectorAll('.hover-popup-trigger');
+
+    function updateBodyModalState() {
+      const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
+      body.classList.toggle('modal-active', anyModalOpen);
     }
 
-    function closeModal() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      frame.src = '';
-      document.body.classList.remove('modal-active');
+    function openPdfModal(pdfPath, titleText) {
+      pdfFrame.src = pdfPath;
+      pdfTitle.textContent = titleText;
+      pdfModal.classList.add('open');
+      pdfModal.setAttribute('aria-hidden', 'false');
+      updateBodyModalState();
+    }
+
+    function closePdfModal() {
+      pdfModal.classList.remove('open');
+      pdfModal.setAttribute('aria-hidden', 'true');
+      pdfFrame.src = '';
+      updateBodyModalState();
+    }
+
+    function openMediaModal(type, src, titleText) {
+      mediaModalTitle.textContent = titleText;
+      mediaModalContent.innerHTML = '';
+
+      if (type === 'image') {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = titleText;
+        mediaModalContent.appendChild(img);
+      } else if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
+        mediaModalContent.appendChild(video);
+      }
+
+      mediaModal.classList.add('open');
+      mediaModal.setAttribute('aria-hidden', 'false');
+      updateBodyModalState();
+    }
+
+    function closeMediaModal() {
+      mediaModal.classList.remove('open');
+      mediaModal.setAttribute('aria-hidden', 'true');
+      mediaModalContent.innerHTML = '';
+      updateBodyModalState();
     }
 
     previewButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        openModal(button.dataset.pdf, button.dataset.title);
+        openPdfModal(button.dataset.pdf, button.dataset.title);
       });
     });
 
-    closeButton.addEventListener('click', closeModal);
+    mediaTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        openMediaModal(
+          trigger.dataset.mediaType,
+          trigger.dataset.mediaSrc,
+          trigger.dataset.mediaTitle
+        );
+      });
+    });
 
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        closeModal();
+    closePdfButton.addEventListener('click', closePdfModal);
+    closeMediaButton.addEventListener('click', closeMediaModal);
+
+    pdfModal.addEventListener('click', (event) => {
+      if (event.target === pdfModal) {
+        closePdfModal();
+      }
+    });
+
+    mediaModal.addEventListener('click', (event) => {
+      if (event.target === mediaModal) {
+        closeMediaModal();
       }
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.classList.contains('open')) {
-        closeModal();
+      if (event.key === 'Escape') {
+        if (mediaModal.classList.contains('open')) {
+          closeMediaModal();
+        } else if (pdfModal.classList.contains('open')) {
+          closePdfModal();
+        }
       }
     });
   </script>
