@@ -126,7 +126,8 @@
     }
 
     a.button,
-    button.button {
+    button.button,
+    .hover-popup-trigger {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -152,7 +153,9 @@
     a.button:active,
     a.button:focus,
     button.button:hover,
-    button.button:focus {
+    button.button:focus,
+    .hover-popup-trigger:hover,
+    .hover-popup-trigger:focus {
       color: var(--text) !important;
       -webkit-text-fill-color: var(--text);
       text-decoration: none !important;
@@ -165,6 +168,7 @@
 
     .project-card {
       padding: 22px;
+      overflow: visible;
     }
 
     .project-layout {
@@ -178,11 +182,14 @@
       display: grid;
       gap: 18px;
       align-content: start;
+      overflow: visible;
     }
 
     .project-header {
       display: grid;
       gap: 10px;
+      position: relative;
+      overflow: visible;
     }
 
     .project-media iframe,
@@ -324,6 +331,89 @@
       flex: 1;
     }
 
+    .hover-popup-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      overflow: visible;
+    }
+
+    .hover-popup-trigger {
+      user-select: none;
+    }
+
+    .hover-popup-panel {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: min(760px, 82vw);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(16, 24, 40, 0.18);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.95fr);
+      gap: 16px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      z-index: 30;
+    }
+
+    .hover-popup-wrap:hover .hover-popup-panel,
+    .hover-popup-wrap:focus-within .hover-popup-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .hover-popup-panel::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 22px;
+      width: 14px;
+      height: 14px;
+      background: #ffffff;
+      border-left: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      transform: rotate(45deg);
+    }
+
+    .hover-popup-media video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      display: block;
+      background: #d8dee6;
+    }
+
+    .hover-popup-copy h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .hover-popup-copy p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hover-popup-copy ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #475467;
+    }
+
+    .hover-popup-copy li + li {
+      margin-top: 8px;
+    }
+
     footer {
       text-align: center;
       margin-top: 30px;
@@ -337,6 +427,11 @@
     @media (max-width: 900px) {
       .project-layout {
         grid-template-columns: 1fr;
+      }
+
+      .hover-popup-panel {
+        grid-template-columns: 1fr;
+        width: min(640px, 88vw);
       }
     }
 
@@ -353,8 +448,33 @@
       }
 
       a.button,
-      button.button {
+      button.button,
+      .hover-popup-trigger {
         white-space: normal;
+      }
+
+      .hover-popup-wrap {
+        width: 100%;
+      }
+
+      .hover-popup-panel {
+        position: static;
+        width: 100%;
+        margin-top: 12px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        display: none;
+      }
+
+      .hover-popup-wrap:hover .hover-popup-panel,
+      .hover-popup-wrap:focus-within .hover-popup-panel {
+        display: grid;
+      }
+
+      .hover-popup-panel::before {
+        display: none;
       }
     }
   </style>
@@ -385,7 +505,7 @@
         <p class="subtitle">Each project includes a dedicated contribution panel to enumerate project responsibilities.</p>
 
         <div class="projects-stack">
-          
+
           <article class="project-card" id="competition-video">
             <div class="project-layout">
               <div class="project-main">
@@ -394,6 +514,28 @@
                   <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+
+                    <div class="hover-popup-wrap">
+                      <span class="hover-popup-trigger" tabindex="0">Bin Subsystem View</span>
+                      <div class="hover-popup-panel">
+                        <div class="hover-popup-media">
+                          <video controls autoplay muted loop playsinline preload="metadata">
+                            <source src="assets/Recording 2026-04-05 095559.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                        <div class="hover-popup-copy">
+                          <h4>Bin Features</h4>
+                          <p>Encircling view of the custom bin subsystem used on the IEEE competition robot.</p>
+                          <ul>
+                            <li>Custom switches determine retracted versus extended states.</li>
+                            <li>Lead screw is motor-driven to carry the pusher plate between endstop switch points.</li>
+                            <li>Servo simultaneously expands the ball retention space.</li>
+                            <li>Servo mechanism also holds the bins so the robot can move them around the game field.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="project-media">
@@ -415,9 +557,9 @@
                     <li class="placeholder">Led troubleshooting and testing of electromechanical components.</li>
                     <li class="placeholder">Validated performance using metrics associated with competition rules.</li>
                     <li class="placeholder">End-to-end mainboard PCB and power distribition PCB designer</li>
-		    <li class="placeholder">Designed mission critical lead-screw centered retention and evacuation bins</li>
+                    <li class="placeholder">Designed mission critical lead-screw centered retention and evacuation bins</li>
                   </ul>
-                 </div>
+                </div>
               </div>
             </div>
           </article>
@@ -450,7 +592,6 @@
                     <li class="placeholder">Modeled end to end project in OnShape based on kinematic reference.</li>
                     <li class="placeholder">Selected/sized components primarily around slew bearings and Nema 23 motors.</li>
                     <li class="placeholder">Printed in nylon-carbon fiber for rigidity and load minimization.</li>
-                    
                   </ul>
                 </div>
               </div>
@@ -515,14 +656,14 @@
                     <li class="placeholder">Integrated Pi Pico 2 and DRV8825 to power two Nema 17 stepper motors.</li>
                     <li class="placeholder">Programmed endstop boundary user control behavior.</li>
                     <li class="placeholder">XY planar movement and Z-axis controlled by separate joysticks</li>
-		    <li class="placeholder">Electromagnet activation using a two position switch programmed with deactivation pulse to avoid residual magnetism</li>
-                   
+                    <li class="placeholder">Electromagnet activation using a two position switch programmed with deactivation pulse to avoid residual magnetism</li>
                   </ul>
                 </div>
               </div>
             </div>
           </article>
-</div>
+
+        </div>
       </div>
     </section>
 
