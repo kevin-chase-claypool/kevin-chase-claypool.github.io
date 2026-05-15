@@ -640,9 +640,35 @@
                 <div class="project-header">
                   <h3>SCARA Robot</h3>
                   <p class="project-summary">SCARA mechanical design project with a system demonstration video and a separate linked technical presentation.</p>
+
                   <div class="project-links">
-                    <a class="button" href="scara_talk%20(1).mp4" target="_blank" rel="noopener noreferrer">Technical Presentation</a>
-                    <a class="button" href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+                    <a
+                      class="button scara-video-button"
+                      href="scara_talk%20(1).mp4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-video-src="scara_talk%20(1).mp4"
+                      data-video-title="Technical Presentation">
+                      Technical Presentation
+                    </a>
+
+                    <a
+                      class="button scara-video-button"
+                      href="scara_move.mp4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-video-src="scara_move.mp4"
+                      data-video-title="Movement Demo">
+                      Movement Demo
+                    </a>
+
+                    <a
+                      class="button"
+                      href="https://cad.onshape.com/documents/d434e614f64c28b996e4a144/w/cb96a52a3bf24cb37ff3fdaf/e/db9bd563a9bb62fb42a2a7e3"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      Open CAD Model
+                    </a>
 
                     <div class="hover-popup-wrap">
                       <button
@@ -653,10 +679,12 @@
                         data-media-title="SCARA Exploded View">
                         Exploded View
                       </button>
+
                       <div class="hover-popup-panel">
                         <div class="hover-popup-media">
                           <img src="assets/scara_exploded.png" alt="Exploded view of the SCARA robot assembly" />
                         </div>
+
                         <div class="hover-popup-copy">
                           <h4>SCARA Exploded View</h4>
                           <p>Exploded assembly view showing the structural layout and major components of the SCARA robot model.</p>
@@ -666,14 +694,17 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="project-media">
-                 <video class="media-thumb" controls muted playsinline preload="metadata">
-  <source src="scara_move.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-                  <p>System demonstration of the SCARA project. The technical presentation is linked above.</p>
+                  <video id="scaraPreviewVideo" class="media-thumb" controls muted playsinline preload="metadata">
+                    <source id="scaraPreviewSource" src="scara_move.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+
+                  <p id="scaraPreviewCaption">Movement Demo shown by default. Hover over “Technical Presentation” or “Movement Demo” to change the visible SCARA video preview. Click either button to open that video directly.</p>
                 </div>
               </div>
+
               <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
@@ -869,7 +900,7 @@
     const mediaModalTitle = document.getElementById('mediaModalTitle');
     const mediaModalContent = document.getElementById('mediaModalContent');
     const closeMediaButton = document.getElementById('closeMediaModal');
-    const mediaTriggers = document.querySelectorAll('.hover-popup-trigger');
+    const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type]');
 
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
@@ -935,6 +966,34 @@
           trigger.dataset.mediaSrc,
           trigger.dataset.mediaTitle
         );
+      });
+    });
+
+    const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
+    const scaraPreviewSource = document.getElementById('scaraPreviewSource');
+    const scaraPreviewCaption = document.getElementById('scaraPreviewCaption');
+    const scaraVideoButtons = document.querySelectorAll('.scara-video-button');
+
+    function setScaraPreview(videoSrc, videoTitle) {
+      if (!scaraPreviewVideo || !scaraPreviewSource) return;
+
+      if (scaraPreviewSource.getAttribute('src') !== videoSrc) {
+        scaraPreviewSource.setAttribute('src', videoSrc);
+        scaraPreviewVideo.load();
+      }
+
+      if (scaraPreviewCaption && videoTitle) {
+        scaraPreviewCaption.textContent = videoTitle + ' preview shown. Hover over either SCARA video button to change the visible preview. Click either button to open that video directly.';
+      }
+    }
+
+    scaraVideoButtons.forEach((button) => {
+      button.addEventListener('mouseenter', () => {
+        setScaraPreview(button.dataset.videoSrc, button.dataset.videoTitle);
+      });
+
+      button.addEventListener('focus', () => {
+        setScaraPreview(button.dataset.videoSrc, button.dataset.videoTitle);
       });
     });
 
