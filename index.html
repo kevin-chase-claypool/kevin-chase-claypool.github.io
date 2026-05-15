@@ -581,7 +581,29 @@
                   <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
 
                   <div class="project-links">
-                    <a class="button" href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+                    <button
+                      class="button competition-preview-button"
+                      type="button"
+                      data-preview-type="video"
+                      data-preview-src="ieee_run.mp4">
+                      Winning Run
+                    </button>
+
+                    <button
+                      class="button competition-preview-button"
+                      type="button"
+                      data-preview-type="image"
+                      data-preview-src="bracket.jpeg">
+                      Competition Bracket
+                    </button>
+
+                    <a
+                      class="button"
+                      href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      Open CAD Model
+                    </a>
 
                     <div class="hover-popup-wrap">
                       <button
@@ -617,13 +639,13 @@
                   </div>
                 </div>
 
-                <div class="project-media">
-                  <video class="media-thumb" controls muted playsinline preload="metadata">
+                <div class="project-media" id="competitionPreviewArea">
+                  <video id="competitionPreviewVideo" class="media-thumb" controls muted playsinline preload="metadata">
                     <source src="ieee_run.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                   </video>
 
-                  <p>Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
+                  <p id="competitionPreviewCaption">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition. Hover over or click “Competition Bracket” to show the bracket image here.</p>
                 </div>
               </div>
 
@@ -1031,6 +1053,9 @@
     const scaraPreviewSource = document.getElementById('scaraPreviewSource');
     const scaraVideoButtons = document.querySelectorAll('.scara-video-button');
 
+    const competitionPreviewArea = document.getElementById('competitionPreviewArea');
+    const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
+
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
       body.classList.toggle('modal-active', anyModalOpen);
@@ -1091,6 +1116,34 @@
       }
     }
 
+    function setCompetitionPreview(type, src) {
+      if (!competitionPreviewArea) return;
+
+      if (type === 'image') {
+        competitionPreviewArea.innerHTML = `
+          <img
+            id="competitionPreviewImage"
+            class="media-thumb"
+            src="${src}"
+            alt="Competition bracket for the 2026 Region 5 IEEE Robotics Competition Champion Robot"
+          >
+
+          <p id="competitionPreviewCaption">Competition bracket image. Hover over or click “Winning Run” to return to the run video.</p>
+        `;
+      }
+
+      if (type === 'video') {
+        competitionPreviewArea.innerHTML = `
+          <video id="competitionPreviewVideo" class="media-thumb" controls muted playsinline preload="metadata">
+            <source src="${src}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <p id="competitionPreviewCaption">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition. Hover over or click “Competition Bracket” to show the bracket image here.</p>
+        `;
+      }
+    }
+
     previewButtons.forEach((button) => {
       button.addEventListener('click', () => {
         openPdfModal(button.dataset.pdf, button.dataset.title);
@@ -1114,6 +1167,20 @@
 
       button.addEventListener('focus', () => {
         setScaraPreview(button.dataset.videoSrc);
+      });
+    });
+
+    competitionPreviewButtons.forEach((button) => {
+      button.addEventListener('mouseenter', () => {
+        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
+      });
+
+      button.addEventListener('focus', () => {
+        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
+      });
+
+      button.addEventListener('click', () => {
+        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
       });
     });
 
