@@ -464,6 +464,44 @@
       overflow: hidden;
     }
 
+
+    /* Keeps board-file hover previews above neighboring rows/buttons. */
+    .resource-list,
+    .resource-item,
+    .resource-actions,
+    .section-card {
+      overflow: visible;
+    }
+
+    .resource-item {
+      position: relative;
+      z-index: 1;
+    }
+
+    .resource-item:hover,
+    .resource-item:focus-within {
+      z-index: 200;
+    }
+
+    .resource-actions {
+      position: relative;
+      z-index: 10;
+    }
+
+    .resource-actions .hover-popup-wrap {
+      position: relative;
+      z-index: 20;
+    }
+
+    .resource-actions .hover-popup-wrap:hover,
+    .resource-actions .hover-popup-wrap:focus-within {
+      z-index: 300;
+    }
+
+    .resource-actions .hover-popup-panel {
+      z-index: 1000;
+    }
+
     @media (max-width: 900px) {
       .project-layout {
         grid-template-columns: 1fr;
@@ -833,7 +871,7 @@
 
     <section class="section" id="board-files">
       <div class="section-card">
-        <h2>PCB Design Drawings for Region 5 IEEE 2026 Champion Model</h2>
+        <h2>Board Design Files for Region 5 IEEE 2026 Champion Model</h2>
         <p class="subtitle">Designed in KiCAD for a two-plane milling process. DXF files from Onshape were imported into KiCAD for 3D model integration.</p>
 
         <div class="resource-list">
