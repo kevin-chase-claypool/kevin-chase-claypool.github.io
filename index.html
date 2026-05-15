@@ -379,9 +379,11 @@
     }
 
     .hover-popup-media video,
-    .hover-popup-media img {
+    .hover-popup-media img,
+    .hover-popup-media iframe {
       width: 100%;
       aspect-ratio: 16 / 9;
+      border: 0;
       border-radius: 16px;
       display: block;
       background: #d8dee6;
@@ -522,41 +524,44 @@
     <section class="hero">
       <div class="eyebrow">Portfolio</div>
       <h1>Kevin Chase Claypool</h1>
+
       <div class="hero-resume-actions">
         <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview Resume</button>
         <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
       </div>
+
       <div class="headline">Electrical Engineer | Electromechanical Design</div>
       <p class="subtitle">Project media, CAD workspaces, board design files and contribution bullet lists for each major project.</p>
+
       <div class="quick-links">
         <a class="button" href="#projects">Projects</a>
         <a class="button" href="#printables">FDM-Specific 3d Modeling Portfolio</a>
         <a class="button" href="#board-files">IEEE Competition PCB Files</a>
+
         <div class="hover-popup-wrap">
-  <button
-    class="hover-popup-trigger preview-button"
-    type="button"
-    data-pdf="onshapecertificate.pdf"
-    data-title="OnShape Associate Certification">
-    OnShape Associate Certification
-  </button>
+          <button
+            class="hover-popup-trigger preview-button"
+            type="button"
+            data-pdf="onshapecertificate.pdf"
+            data-title="OnShape Associate Certification">
+            OnShape Associate Certification
+          </button>
 
-  <div class="hover-popup-panel">
-    <div class="hover-popup-media">
-      <iframe
-        src="onshapecertificate.pdf"
-        title="OnShape Associate Certification Preview"
-        style="width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 16px; background: #d8dee6;">
-      </iframe>
-    </div>
+          <div class="hover-popup-panel">
+            <div class="hover-popup-media">
+              <iframe
+                src="onshapecertificate.pdf"
+                title="OnShape Associate Certification Preview">
+              </iframe>
+            </div>
 
-    <div class="hover-popup-copy">
-      <h4>OnShape Associate Certification</h4>
-      <p>Certification PDF preview. Click the button to open a larger in-page preview.</p>
-      <div class="hover-popup-note">Click “OnShape Associate Certification” to open the full preview.</div>
-    </div>
-  </div>
-</div>
+            <div class="hover-popup-copy">
+              <h4>OnShape Associate Certification</h4>
+              <p>Certification PDF preview. Click the button to open a larger in-page preview.</p>
+              <div class="hover-popup-note">Click “OnShape Associate Certification” to open the full preview.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -574,6 +579,7 @@
                 <div class="project-header">
                   <h3>2026 Region 5 IEEE Robotics Competition Champion Robot</h3>
                   <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
+
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/c9ed32a36c768686c8c5d4df/w/a7d2fd12beda7176fe007a69/e/fcde962521759044210d25b0?renderMode=0&amp;uiState=69d160ed26bf52135ecb48c3" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
 
@@ -586,6 +592,7 @@
                         data-media-title="IEEE Robot Bin Subsystem View">
                         Bin Subsystem View
                       </button>
+
                       <div class="hover-popup-panel">
                         <div class="hover-popup-media">
                           <video controls autoplay muted loop playsinline preload="metadata">
@@ -593,6 +600,7 @@
                             Your browser does not support the video tag.
                           </video>
                         </div>
+
                         <div class="hover-popup-copy">
                           <h4>Bin Features</h4>
                           <p>Encircling view of the custom bin subsystem used on the IEEE competition robot.</p>
@@ -608,14 +616,17 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="project-media">
                   <video class="media-thumb" controls muted playsinline preload="metadata">
                     <source src="ieee_run.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
+                    Your browser does not support the video tag.
                   </video>
+
                   <p>Winning competition run video from the 2026 Region 5 IEEE Robotics Competition.</p>
                 </div>
               </div>
+
               <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
@@ -645,8 +656,7 @@
                       href="scara_talk%20(1).mp4"
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-video-src="scara_talk%20(1).mp4"
-                      data-video-title="Technical Presentation">
+                      data-video-src="scara_talk%20(1).mp4">
                       Technical Presentation
                     </a>
 
@@ -655,8 +665,7 @@
                       href="scara_move.mp4"
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-video-src="scara_move.mp4"
-                      data-video-title="Movement Demo">
+                      data-video-src="scara_move.mp4">
                       Movement Demo
                     </a>
 
@@ -699,7 +708,7 @@
                     Your browser does not support the video tag.
                   </video>
 
-                  <p id="scaraPreviewCaption">Movement Demo shown by default. Hover over “Technical Presentation” or “Movement Demo” to change the visible SCARA video preview. Click either button to open that video directly.</p>
+                  <p>Hover over “Technical Presentation” or “Movement Demo” to preview the associated SCARA video. Click either button to open that video directly.</p>
                 </div>
               </div>
 
@@ -722,18 +731,22 @@
                 <div class="project-header">
                   <h3>Axial Pulse Motor Control System</h3>
                   <p class="project-summary">Electromechanical motor prototype with control, fabrication and test workflow captured in video and CAD.</p>
+
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/2582fc382ed1347440451cda/w/546e91bbf5b500bdd3ecb9f7/e/a798fbc582b7bb6c99fd3416" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
                   </div>
                 </div>
+
                 <div class="project-media">
                   <video controls>
                     <source src="assets/PXL_20250501_201354126.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
+
                   <p>Demonstration of axial pulse motor control system operation.</p>
                 </div>
               </div>
+
               <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
@@ -755,10 +768,12 @@
                 <div class="project-header">
                   <h3>XY Plotter</h3>
                   <p class="project-summary">Arcade controller-driven motion for game platform.</p>
+
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
                   </div>
                 </div>
+
                 <div class="project-media">
                   <div class="project-side-panel">
                     <h4>Project Video</h4>
@@ -766,6 +781,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="project-side">
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
@@ -797,44 +813,148 @@
       <div class="section-card">
         <h2>Board Design Files for Region 5 IEEE 2026 Champion Model</h2>
         <p class="subtitle">Designed in KiCAD for a two-plane milling process. DXF files from Onshape were imported into KiCAD for 3D model integration.</p>
+
         <div class="resource-list">
           <div class="resource-item">
             <div>
               <strong>Main Board Schematic</strong>
-              <span>Preview in-page or open the source PDF directly.</span>
+              <span>Hover to preview, click to open a larger in-page PDF preview, or open the source PDF directly.</span>
             </div>
+
             <div class="resource-actions">
-              <button class="button preview-button" type="button" data-pdf="assets/mainboard2.pdf" data-title="Main Board Schematic">Preview</button>
+              <div class="hover-popup-wrap">
+                <button
+                  class="hover-popup-trigger preview-button"
+                  type="button"
+                  data-pdf="assets/mainboard2.pdf"
+                  data-title="Main Board Schematic">
+                  Preview
+                </button>
+
+                <div class="hover-popup-panel">
+                  <div class="hover-popup-media">
+                    <iframe
+                      src="assets/mainboard2.pdf"
+                      title="Main Board Schematic Preview">
+                    </iframe>
+                  </div>
+
+                  <div class="hover-popup-copy">
+                    <h4>Main Board Schematic</h4>
+                    <p>Hover preview of the main board schematic PDF.</p>
+                    <div class="hover-popup-note">Click “Preview” to open the larger in-page PDF viewer.</div>
+                  </div>
+                </div>
+              </div>
+
               <a class="button" href="assets/mainboard2.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
             </div>
           </div>
+
           <div class="resource-item">
             <div>
               <strong>Main Board PCB Layout</strong>
-              <span>Preview in-page or open the source PDF directly.</span>
+              <span>Hover to preview, click to open a larger in-page PDF preview, or open the source PDF directly.</span>
             </div>
+
             <div class="resource-actions">
-              <button class="button preview-button" type="button" data-pdf="assets/mainboard2_PCB.pdf" data-title="Main Board PCB Layout">Preview</button>
+              <div class="hover-popup-wrap">
+                <button
+                  class="hover-popup-trigger preview-button"
+                  type="button"
+                  data-pdf="assets/mainboard2_PCB.pdf"
+                  data-title="Main Board PCB Layout">
+                  Preview
+                </button>
+
+                <div class="hover-popup-panel">
+                  <div class="hover-popup-media">
+                    <iframe
+                      src="assets/mainboard2_PCB.pdf"
+                      title="Main Board PCB Layout Preview">
+                    </iframe>
+                  </div>
+
+                  <div class="hover-popup-copy">
+                    <h4>Main Board PCB Layout</h4>
+                    <p>Hover preview of the main board PCB layout PDF.</p>
+                    <div class="hover-popup-note">Click “Preview” to open the larger in-page PDF viewer.</div>
+                  </div>
+                </div>
+              </div>
+
               <a class="button" href="assets/mainboard2_PCB.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
             </div>
           </div>
+
           <div class="resource-item">
             <div>
               <strong>Buck Board Schematic</strong>
-              <span>Preview in-page or open the source PDF directly.</span>
+              <span>Hover to preview, click to open a larger in-page PDF preview, or open the source PDF directly.</span>
             </div>
+
             <div class="resource-actions">
-              <button class="button preview-button" type="button" data-pdf="assets/buckboard.pdf" data-title="Buck Board Schematic">Preview</button>
+              <div class="hover-popup-wrap">
+                <button
+                  class="hover-popup-trigger preview-button"
+                  type="button"
+                  data-pdf="assets/buckboard.pdf"
+                  data-title="Buck Board Schematic">
+                  Preview
+                </button>
+
+                <div class="hover-popup-panel">
+                  <div class="hover-popup-media">
+                    <iframe
+                      src="assets/buckboard.pdf"
+                      title="Buck Board Schematic Preview">
+                    </iframe>
+                  </div>
+
+                  <div class="hover-popup-copy">
+                    <h4>Buck Board Schematic</h4>
+                    <p>Hover preview of the buck board schematic PDF.</p>
+                    <div class="hover-popup-note">Click “Preview” to open the larger in-page PDF viewer.</div>
+                  </div>
+                </div>
+              </div>
+
               <a class="button" href="assets/buckboard.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
             </div>
           </div>
+
           <div class="resource-item">
             <div>
               <strong>Buck Board PCB Layout</strong>
-              <span>Preview in-page or open the source PDF directly.</span>
+              <span>Hover to preview, click to open a larger in-page PDF preview, or open the source PDF directly.</span>
             </div>
+
             <div class="resource-actions">
-              <button class="button preview-button" type="button" data-pdf="assets/buckboard_PCB.pdf" data-title="Buck Board PCB Layout">Preview</button>
+              <div class="hover-popup-wrap">
+                <button
+                  class="hover-popup-trigger preview-button"
+                  type="button"
+                  data-pdf="assets/buckboard_PCB.pdf"
+                  data-title="Buck Board PCB Layout">
+                  Preview
+                </button>
+
+                <div class="hover-popup-panel">
+                  <div class="hover-popup-media">
+                    <iframe
+                      src="assets/buckboard_PCB.pdf"
+                      title="Buck Board PCB Layout Preview">
+                    </iframe>
+                  </div>
+
+                  <div class="hover-popup-copy">
+                    <h4>Buck Board PCB Layout</h4>
+                    <p>Hover preview of the buck board PCB layout PDF.</p>
+                    <div class="hover-popup-note">Click “Preview” to open the larger in-page PDF viewer.</div>
+                  </div>
+                </div>
+              </div>
+
               <a class="button" href="assets/buckboard_PCB.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
             </div>
           </div>
@@ -845,12 +965,14 @@
     <section class="section" id="resume">
       <div class="section-card">
         <h2>Resume</h2>
+
         <div class="resource-list">
           <div class="resource-item">
             <div>
               <strong>Kevin Claypool Resume</strong>
               <span>Preview in-page or open the PDF.</span>
             </div>
+
             <div class="resource-actions">
               <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview</button>
               <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
@@ -866,6 +988,7 @@
           <div class="modal-title" id="pdfModalTitle">PDF Preview</div>
           <button class="icon-button" type="button" id="closePdfModal">Close</button>
         </div>
+
         <iframe class="pdf-frame" id="pdfFrame" title="PDF preview"></iframe>
       </div>
     </div>
@@ -876,6 +999,7 @@
           <div class="modal-title" id="mediaModalTitle">Media Preview</div>
           <button class="icon-button" type="button" id="closeMediaModal">Close</button>
         </div>
+
         <div class="media-modal-body">
           <div class="media-modal-content" id="mediaModalContent"></div>
         </div>
@@ -898,7 +1022,14 @@
     const mediaModalTitle = document.getElementById('mediaModalTitle');
     const mediaModalContent = document.getElementById('mediaModalContent');
     const closeMediaButton = document.getElementById('closeMediaModal');
+
+    /* Only image/video popup triggers should open the media modal.
+       PDF hover-preview buttons also use .hover-popup-trigger, so this selector must stay restricted. */
     const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type]');
+
+    const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
+    const scaraPreviewSource = document.getElementById('scaraPreviewSource');
+    const scaraVideoButtons = document.querySelectorAll('.scara-video-button');
 
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
@@ -951,6 +1082,15 @@
       updateBodyModalState();
     }
 
+    function setScaraPreview(videoSrc) {
+      if (!scaraPreviewVideo || !scaraPreviewSource) return;
+
+      if (scaraPreviewSource.getAttribute('src') !== videoSrc) {
+        scaraPreviewSource.setAttribute('src', videoSrc);
+        scaraPreviewVideo.load();
+      }
+    }
+
     previewButtons.forEach((button) => {
       button.addEventListener('click', () => {
         openPdfModal(button.dataset.pdf, button.dataset.title);
@@ -967,31 +1107,13 @@
       });
     });
 
-    const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
-    const scaraPreviewSource = document.getElementById('scaraPreviewSource');
-    const scaraPreviewCaption = document.getElementById('scaraPreviewCaption');
-    const scaraVideoButtons = document.querySelectorAll('.scara-video-button');
-
-    function setScaraPreview(videoSrc, videoTitle) {
-      if (!scaraPreviewVideo || !scaraPreviewSource) return;
-
-      if (scaraPreviewSource.getAttribute('src') !== videoSrc) {
-        scaraPreviewSource.setAttribute('src', videoSrc);
-        scaraPreviewVideo.load();
-      }
-
-      if (scaraPreviewCaption && videoTitle) {
-        scaraPreviewCaption.textContent = videoTitle + ' preview shown. Hover over either SCARA video button to change the visible preview. Click either button to open that video directly.';
-      }
-    }
-
     scaraVideoButtons.forEach((button) => {
       button.addEventListener('mouseenter', () => {
-        setScaraPreview(button.dataset.videoSrc, button.dataset.videoTitle);
+        setScaraPreview(button.dataset.videoSrc);
       });
 
       button.addEventListener('focus', () => {
-        setScaraPreview(button.dataset.videoSrc, button.dataset.videoTitle);
+        setScaraPreview(button.dataset.videoSrc);
       });
     });
 
