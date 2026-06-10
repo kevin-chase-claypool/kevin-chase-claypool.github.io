@@ -86,6 +86,23 @@
       margin-bottom: 8px;
     }
 
+    .section-title-with-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title-with-logo h2 {
+      margin-bottom: 0;
+    }
+
+    .printables-logo {
+      width: 28px;
+      height: 40px;
+      flex: 0 0 auto;
+      fill: #fa6831;
+    }
+
     .headline {
       font-size: 1.08rem;
       color: var(--accent);
@@ -901,7 +918,12 @@
 
     <section class="section" id="printables">
       <div class="section-card">
-        <h2>Printables 3d Modeling Portfolio</h2>
+        <div class="section-title-with-logo">
+          <h2>Printables 3d Modeling Portfolio</h2>
+          <svg class="printables-logo" viewBox="0 0 24.344 35" role="img" aria-label="Printables logo">
+            <path d="m0 35 12.172-7L0 21ZM12.172 0 0 7l12.172 7v14l12.172-7V7Z"></path>
+          </svg>
+        </div>
         <p class="subtitle">Collection of fused deposition modeling designs published on Printables, demonstrating CAD development, practical design-for-manufacturing/ additive manufacturing</p>
         <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View Modeling Portfolio</a>
       </div>
