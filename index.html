@@ -890,6 +890,7 @@
 
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+                    <a class="button xytheta-video-button" href="Converter%20(1).mp4" target="_blank" rel="noopener noreferrer" aria-label="Open XYTheta G-code app video">G-code App</a>
                     <a class="button xytheta-progress-button" href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">Mechanical Progress</a>
                   </div>
                 </div>
@@ -1161,6 +1162,7 @@
     const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
 
     const xythetaPreviewArea = document.getElementById('xythetaPreviewArea');
+    const xythetaVideoButtons = document.querySelectorAll('.xytheta-video-button');
     const xythetaProgressButtons = document.querySelectorAll('.xytheta-progress-button');
 
     function updateBodyModalState() {
@@ -1314,6 +1316,11 @@
       button.addEventListener('focus', () => setXythetaProgressPreview(true));
       button.addEventListener('mouseleave', () => setXythetaProgressPreview(false));
       button.addEventListener('blur', () => setXythetaProgressPreview(false));
+    });
+
+    xythetaVideoButtons.forEach((button) => {
+      button.addEventListener('mouseenter', () => setXythetaProgressPreview(false));
+      button.addEventListener('focus', () => setXythetaProgressPreview(false));
     });
 
     closePdfButton.addEventListener('click', closePdfModal);
