@@ -215,10 +215,6 @@
       gap: 10px;
     }
 
-    .project-media [hidden] {
-      display: none !important;
-    }
-
     .project-media iframe,
     .project-media video,
     .project-media img {
@@ -899,14 +895,11 @@
                 </div>
 
                 <div class="project-media" id="xythetaPreviewArea">
-                  <video id="xythetaPreviewVideo" controls muted playsinline preload="metadata">
+                  <video controls muted playsinline preload="metadata">
                     <source src="Converter%20(1).mp4" type="video/mp4">
                     Your browser does not support the video tag.
                     <a href="Converter%20(1).mp4">Download the XYTheta Pen Plotter video</a>.
                   </video>
-                  <a id="xythetaProgressPreview" href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" hidden aria-label="Open full-size XYTheta mechanical progress image">
-                    <img src="assets/PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
-                  </a>
                 </div>
               </div>
 
@@ -1167,8 +1160,7 @@
     const competitionPreviewArea = document.getElementById('competitionPreviewArea');
     const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
 
-    const xythetaPreviewVideo = document.getElementById('xythetaPreviewVideo');
-    const xythetaProgressPreview = document.getElementById('xythetaProgressPreview');
+    const xythetaPreviewArea = document.getElementById('xythetaPreviewArea');
     const xythetaProgressButtons = document.querySelectorAll('.xytheta-progress-button');
 
     function updateBodyModalState() {
@@ -1260,10 +1252,21 @@
     }
 
     function setXythetaProgressPreview(showProgressImage) {
-      if (!xythetaPreviewVideo || !xythetaProgressPreview) return;
+      if (!xythetaPreviewArea) return;
 
-      xythetaPreviewVideo.hidden = showProgressImage;
-      xythetaProgressPreview.hidden = !showProgressImage;
+      xythetaPreviewArea.innerHTML = showProgressImage
+        ? `
+          <a href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">
+            <img src="assets/PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
+          </a>
+        `
+        : `
+          <video controls muted playsinline preload="metadata">
+            <source src="Converter%20(1).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            <a href="Converter%20(1).mp4">Download the XYTheta Pen Plotter video</a>.
+          </video>
+        `;
     }
 
     previewButtons.forEach((button) => {
