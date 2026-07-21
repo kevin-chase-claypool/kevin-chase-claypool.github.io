@@ -210,6 +210,11 @@
       overflow: visible;
     }
 
+    .project-media {
+      display: grid;
+      gap: 10px;
+    }
+
     .project-media iframe,
     .project-media video,
     .project-media img {
@@ -223,7 +228,7 @@
     }
 
     .project-media p {
-      margin: 10px 0 0;
+      margin: 0;
       font-size: 0.95rem;
       color: var(--muted);
     }
@@ -885,15 +890,19 @@
 
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+                    <a class="button xytheta-progress-button" href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">Mechanical Progress</a>
                   </div>
                 </div>
 
-                <div class="project-media">
-                  <video controls muted playsinline preload="metadata">
+                <div class="project-media" id="xythetaPreviewArea">
+                  <video id="xythetaPreviewVideo" controls muted playsinline preload="metadata">
                     <source src="Converter%20(1).mp4" type="video/mp4">
                     Your browser does not support the video tag.
                     <a href="Converter%20(1).mp4">Download the XYTheta Pen Plotter video</a>.
                   </video>
+                  <a id="xythetaProgressPreview" href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" hidden aria-label="Open full-size XYTheta mechanical progress image">
+                    <img src="assets/PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
+                  </a>
                 </div>
               </div>
 
@@ -1154,6 +1163,10 @@
     const competitionPreviewArea = document.getElementById('competitionPreviewArea');
     const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
 
+    const xythetaPreviewVideo = document.getElementById('xythetaPreviewVideo');
+    const xythetaProgressPreview = document.getElementById('xythetaProgressPreview');
+    const xythetaProgressButtons = document.querySelectorAll('.xytheta-progress-button');
+
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
       body.classList.toggle('modal-active', anyModalOpen);
@@ -1242,6 +1255,13 @@
       }
     }
 
+    function setXythetaProgressPreview(showProgressImage) {
+      if (!xythetaPreviewVideo || !xythetaProgressPreview) return;
+
+      xythetaPreviewVideo.hidden = showProgressImage;
+      xythetaProgressPreview.hidden = !showProgressImage;
+    }
+
     previewButtons.forEach((button) => {
       button.addEventListener('click', () => {
         openPdfModal(button.dataset.pdf, button.dataset.title);
@@ -1280,6 +1300,13 @@
       button.addEventListener('click', () => {
         setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
       });
+    });
+
+    xythetaProgressButtons.forEach((button) => {
+      button.addEventListener('mouseenter', () => setXythetaProgressPreview(true));
+      button.addEventListener('focus', () => setXythetaProgressPreview(true));
+      button.addEventListener('mouseleave', () => setXythetaProgressPreview(false));
+      button.addEventListener('blur', () => setXythetaProgressPreview(false));
     });
 
     closePdfButton.addEventListener('click', closePdfModal);
