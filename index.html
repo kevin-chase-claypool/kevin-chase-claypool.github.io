@@ -1064,6 +1064,12 @@
 
     .headline { color: #1d3555; }
 
+    h1 {
+      max-width: 700px;
+      font-size: clamp(2.35rem, 4.6vw, 4.35rem);
+      line-height: 1.02;
+    }
+
     .hero-aside {
       border-color: #dce8f6;
       background: linear-gradient(145deg, #edf5ff, #f9fbff);
@@ -1071,6 +1077,18 @@
 
     .hero-aside h2 { color: var(--text); }
     .hero-aside p { color: var(--muted); }
+
+    .hero-aside-stack {
+      display: grid;
+      gap: 14px;
+      align-self: end;
+    }
+
+    .hero-aside-stack .credential-preview {
+      min-height: 240px;
+      margin-top: 0;
+    }
+
     .expertise-list span { color: #263d5d; }
     .expertise-list span::before { box-shadow: none; background: var(--accent); }
 
@@ -1382,16 +1400,25 @@
           </div>
         </div>
 
-        <aside class="hero-aside" aria-label="Engineering focus">
-          <div class="hero-aside-label">Engineering focus</div>
-          <h2>Designing the system, not just the component.</h2>
-          <p>From mechanism to motion control, I connect the technical details that make a build work in the real world.</p>
-          <div class="expertise-list">
-            <span>Electromechanical design</span>
-            <span>CAD &amp; rapid fabrication</span>
-            <span>PCB design &amp; system test</span>
+        <div class="hero-aside-stack">
+          <aside class="hero-aside" aria-label="Engineering focus">
+            <div class="hero-aside-label">Engineering focus</div>
+            <h2>Designing the system, not just the component.</h2>
+            <p>From mechanism to motion control, I connect the technical details that make a build work in the real world.</p>
+            <div class="expertise-list">
+              <span>Electromechanical design</span>
+              <span>CAD &amp; rapid fabrication</span>
+              <span>PCB design &amp; system test</span>
+            </div>
+          </aside>
+
+          <div class="credential-preview" id="credentialPreview" aria-live="polite">
+            <div class="credential-preview-empty">
+              <span>Preview workspace</span>
+              <p>Hover over the resume or a certification to view it here.</p>
+            </div>
           </div>
-        </aside>
+        </div>
       </div>
 
       <div class="hero-links-label">Credentials</div>
@@ -1413,13 +1440,6 @@
           rel="noopener noreferrer">
           UT Project Management Certification
         </a>
-      </div>
-
-      <div class="credential-preview" id="credentialPreview" aria-live="polite">
-        <div class="credential-preview-empty">
-          <span>Preview workspace</span>
-          <p>Hover over the resume or a certification to view it here.</p>
-        </div>
       </div>
 
       <div class="hero-links-label">Explore project work</div>
