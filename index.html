@@ -1159,6 +1159,200 @@
     .modal-header, .media-modal-body { background: #f7faff; border-color: var(--border); }
     .icon-button { background: #ffffff; border-color: var(--border); color: var(--text); }
 
+    .credential-links {
+      position: relative;
+      z-index: 20;
+    }
+
+    .credential-links .hover-popup-wrap:hover,
+    .credential-links .hover-popup-wrap:focus-within {
+      z-index: 40;
+    }
+
+    .project-navigation {
+      position: relative;
+      z-index: 1;
+    }
+
+    .credential-preview-card {
+      min-height: 100%;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.24) 0 2px, transparent 3px),
+        linear-gradient(140deg, #0f4e9d 0%, #176dc5 62%, #56a2ee 100%);
+    }
+
+    .credential-preview-card::before,
+    .credential-preview-card::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+    }
+
+    .credential-preview-card::before {
+      width: 190px;
+      height: 190px;
+      top: -105px;
+      right: -72px;
+    }
+
+    .credential-preview-card::after {
+      width: 120px;
+      height: 120px;
+      bottom: -80px;
+      left: -42px;
+    }
+
+    .credential-preview-mark,
+    .credential-preview-type,
+    .credential-preview-title,
+    .credential-preview-rule,
+    .credential-preview-name { position: relative; z-index: 1; }
+
+    .credential-preview-mark {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .credential-preview-type {
+      margin-bottom: 8px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+
+    .credential-preview-title {
+      font-size: clamp(1.55rem, 3.2vw, 2.1rem);
+      font-weight: 750;
+      letter-spacing: -0.05em;
+      line-height: 0.94;
+    }
+
+    .credential-preview-rule {
+      width: 48px;
+      height: 2px;
+      margin: 16px 0 10px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .credential-preview-name {
+      font-size: 0.75rem;
+      font-weight: 650;
+      opacity: 0.84;
+    }
+
+    .credential-preview {
+      display: grid;
+      min-height: 272px;
+      margin-top: 14px;
+      overflow: hidden;
+      border: 1px solid #d7e3f1;
+      border-radius: 18px;
+      background: #f8fbff;
+    }
+
+    .credential-preview-empty {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      min-height: 100%;
+      padding: 28px;
+      text-align: center;
+      color: #6a7b92;
+      background-image: radial-gradient(#c8d8e9 0.7px, transparent 0.7px);
+      background-size: 12px 12px;
+    }
+
+    .credential-preview-empty span {
+      color: #405a7d;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .credential-preview-empty p { margin: 8px 0 0; font-size: 0.9rem; }
+
+    .credential-preview-content {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.9fr) minmax(260px, 1.1fr);
+      min-height: 272px;
+    }
+
+    .credential-preview-document {
+      min-height: 272px;
+      background: #e9eef5;
+    }
+
+    .credential-preview-document iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 272px;
+      border: 0;
+      background: #ffffff;
+    }
+
+    .credential-preview-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px;
+      background: #ffffff;
+    }
+
+    .credential-preview-copy .credential-preview-type {
+      margin: 0;
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .credential-preview-copy h3 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 1.12rem;
+      line-height: 1.2;
+    }
+
+    .credential-preview-copy p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+    .credential-preview-copy .credential-preview-action {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 750;
+    }
+
+    .credential-preview-content .credential-preview-card {
+      min-height: 272px;
+      height: 100%;
+    }
+
+    .credential-trigger.is-active {
+      border-color: #62a3ed;
+      background: #eff6ff;
+      color: var(--accent) !important;
+    }
+
+    @media (max-width: 700px) {
+      .credential-preview-content { grid-template-columns: 1fr; }
+      .credential-preview-document, .credential-preview-document iframe { min-height: 240px; }
+      .credential-preview-copy { padding: 20px; }
+    }
+
     footer { color: #74839a; }
   </style>
 </head>
@@ -1183,7 +1377,7 @@
           <p class="subtitle">I design, build, and test electromechanical systems—bringing together CAD, electronics, controls, and fabrication.</p>
 
           <div class="hero-resume-actions">
-            <button class="button button-primary preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview resume</button>
+            <button class="button button-primary preview-button credential-trigger" type="button" data-credential="resume" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview resume</button>
             <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
           </div>
         </div>
@@ -1202,55 +1396,29 @@
 
       <div class="hero-links-label">Credentials</div>
       <div class="quick-links credential-links">
-        <div class="hover-popup-wrap">
-          <button
-            class="hover-popup-trigger preview-button"
-            type="button"
-            data-pdf="onshapecertificate.pdf"
-            data-title="OnShape Associate Certification">
-            OnShape Associate Certification
-          </button>
+        <button
+          class="button preview-button credential-trigger"
+          type="button"
+          data-credential="onshape"
+          data-pdf="onshapecertificate.pdf"
+          data-title="OnShape Associate Certification">
+          OnShape Associate Certification
+        </button>
 
-          <div class="hover-popup-panel">
-            <div class="hover-popup-media">
-              <iframe
-                src="onshapecertificate.pdf"
-                title="OnShape Associate Certification Preview">
-              </iframe>
-            </div>
+        <a
+          class="button credential-trigger"
+          data-credential="ut-project-management"
+          href="https://www.credential.net/e20c4d6e-1162-4c93-bdff-1b2a19c88b36#acc.cVKGbRLN"
+          target="_blank"
+          rel="noopener noreferrer">
+          UT Project Management Certification
+        </a>
+      </div>
 
-            <div class="hover-popup-copy">
-              <h4>OnShape Associate Certification</h4>
-              <p>Certification PDF preview. Click the button to open a larger in-page preview.</p>
-              <div class="hover-popup-note">Click “OnShape Associate Certification” to open the full preview.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hover-popup-wrap">
-          <a
-            class="hover-popup-trigger"
-            href="https://www.credential.net/e20c4d6e-1162-4c93-bdff-1b2a19c88b36#acc.cVKGbRLN"
-            target="_blank"
-            rel="noopener noreferrer">
-            UT Project Management Certification
-          </a>
-
-          <div class="hover-popup-panel">
-            <div class="hover-popup-media">
-              <iframe
-                src="https://www.credential.net/e20c4d6e-1162-4c93-bdff-1b2a19c88b36#acc.cVKGbRLN"
-                title="UT Project Management Certification Preview"
-                loading="lazy">
-              </iframe>
-            </div>
-
-            <div class="hover-popup-copy">
-              <h4>UT Project Management Certification</h4>
-              <p>Verified digital credential preview. Click the card to open the full credential.</p>
-              <div class="hover-popup-note">Click “UT Project Management Certification” to view the credential.</div>
-            </div>
-          </div>
+      <div class="credential-preview" id="credentialPreview" aria-live="polite">
+        <div class="credential-preview-empty">
+          <span>Preview workspace</span>
+          <p>Hover over the resume or a certification to view it here.</p>
         </div>
       </div>
 
@@ -1788,6 +1956,8 @@
     const pdfTitle = document.getElementById('pdfModalTitle');
     const closePdfButton = document.getElementById('closePdfModal');
     const previewButtons = document.querySelectorAll('.preview-button');
+    const credentialPreview = document.getElementById('credentialPreview');
+    const credentialTriggers = document.querySelectorAll('.credential-trigger');
 
     const mediaModal = document.getElementById('mediaModal');
     const mediaModalTitle = document.getElementById('mediaModalTitle');
@@ -1827,6 +1997,59 @@
       pdfModal.setAttribute('aria-hidden', 'true');
       pdfFrame.src = '';
       updateBodyModalState();
+    }
+
+    function setCredentialPreview(type) {
+      if (!credentialPreview) return;
+
+      credentialTriggers.forEach((trigger) => {
+        trigger.classList.toggle('is-active', trigger.dataset.credential === type);
+      });
+
+      if (type === 'resume' || type === 'onshape') {
+        const isResume = type === 'resume';
+        const title = isResume ? 'Kevin Claypool Resume' : 'OnShape Associate Certification';
+        const source = isResume
+          ? 'assets/Kevin Claypool Resume July 2025.pdf'
+          : 'onshapecertificate.pdf';
+        const description = isResume
+          ? 'Resume preview with engineering experience, education, and skills.'
+          : 'OnShape Associate Certification PDF preview.';
+
+        credentialPreview.innerHTML = `
+          <div class="credential-preview-content">
+            <div class="credential-preview-document">
+              <iframe src="${source}" title="${title} preview"></iframe>
+            </div>
+            <div class="credential-preview-copy">
+              <div class="credential-preview-type">${isResume ? 'Professional background' : 'Credential'}</div>
+              <h3>${title}</h3>
+              <p>${description}</p>
+              <div class="credential-preview-action">Click “${isResume ? 'Preview resume' : 'OnShape Associate Certification'}” for the full in-page view.</div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (type === 'ut-project-management') {
+        credentialPreview.innerHTML = `
+          <div class="credential-preview-content">
+            <div class="credential-preview-card" aria-hidden="true">
+              <div class="credential-preview-mark">UT</div>
+              <div class="credential-preview-type">Verified credential</div>
+              <div class="credential-preview-title">Project<br>Management</div>
+              <div class="credential-preview-rule"></div>
+              <div class="credential-preview-name">Kevin Chase Claypool</div>
+            </div>
+            <div class="credential-preview-copy">
+              <div class="credential-preview-type">Credential</div>
+              <h3>UT Project Management Certification</h3>
+              <p>Verified digital credential issued through the credential platform.</p>
+              <div class="credential-preview-action">Click “UT Project Management Certification” to view the complete credential.</div>
+            </div>
+          </div>
+        `;
+      }
     }
 
     function openMediaModal(type, src, titleText) {
@@ -1919,6 +2142,12 @@
       button.addEventListener('click', () => {
         openPdfModal(button.dataset.pdf, button.dataset.title);
       });
+    });
+
+    credentialTriggers.forEach((trigger) => {
+      trigger.addEventListener('mouseenter', () => setCredentialPreview(trigger.dataset.credential));
+      trigger.addEventListener('focus', () => setCredentialPreview(trigger.dataset.credential));
+      trigger.addEventListener('click', () => setCredentialPreview(trigger.dataset.credential));
     });
 
     mediaTriggers.forEach((trigger) => {
