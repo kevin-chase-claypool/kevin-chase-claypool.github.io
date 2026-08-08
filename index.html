@@ -1122,6 +1122,7 @@
       display: grid;
       gap: 14px;
       align-self: start;
+      container-type: inline-size;
     }
 
     .hero-aside-stack .credential-preview {
@@ -1411,6 +1412,14 @@
       .credential-preview-copy { padding: 20px; }
     }
 
+    @container (max-width: 560px) {
+      .credential-preview-content { grid-template-columns: 1fr; }
+      .credential-preview-document,
+      .credential-preview-document iframe,
+      .credential-preview-content .credential-preview-card { min-height: 220px; }
+      .credential-preview-copy { padding: 20px; }
+    }
+
     /* Compact portfolio layout */
     .hero {
       padding: clamp(28px, 4vw, 42px);
@@ -1549,6 +1558,11 @@
       .gallery-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
       .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .project-media-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-aside-stack { max-width: 560px; }
     }
 
     footer { color: #74839a; }
