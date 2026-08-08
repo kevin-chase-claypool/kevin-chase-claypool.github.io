@@ -1425,6 +1425,80 @@
       letter-spacing: -0.04em;
     }
 
+    .xytheta-progress-gallery {
+      display: grid;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .gallery-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .gallery-heading span {
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 750;
+    }
+
+    .gallery-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .gallery-photo {
+      position: relative;
+      display: block;
+      min-width: 0;
+      aspect-ratio: 1;
+      overflow: hidden;
+      padding: 0;
+      border: 1px solid #d5e0ed;
+      border-radius: 10px;
+      background: #eef3f9;
+      cursor: pointer;
+    }
+
+    .gallery-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-photo span {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      padding: 3px 5px;
+      border-radius: 5px;
+      background: rgba(20, 33, 58, 0.78);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .gallery-photo:hover,
+    .gallery-photo:focus-visible { border-color: #62a3ed; }
+    .gallery-photo:hover img,
+    .gallery-photo:focus-visible img { transform: scale(1.05); }
+
+    @media (max-width: 700px) {
+      .gallery-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
     footer { color: #74839a; }
   </style>
 </head>
@@ -1452,6 +1526,34 @@
             <button class="button button-primary preview-button credential-trigger" type="button" data-credential="resume" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview resume</button>
             <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
           </div>
+
+          <div class="hero-links-label">Credentials</div>
+          <div class="quick-links credential-links">
+            <button
+              class="button preview-button credential-trigger"
+              type="button"
+              data-credential="onshape"
+              data-pdf="onshapecertificate.pdf"
+              data-title="OnShape Associate Certification">
+              OnShape Associate Certification
+            </button>
+
+            <a
+              class="button credential-trigger"
+              data-credential="ut-project-management"
+              href="https://www.credential.net/e20c4d6e-1162-4c93-bdff-1b2a19c88b36#acc.cVKGbRLN"
+              target="_blank"
+              rel="noopener noreferrer">
+              UT Project Management Certification
+            </a>
+          </div>
+
+          <div class="hero-links-label">Explore project work</div>
+          <div class="quick-links project-navigation">
+            <a class="button" href="#projects">Featured projects →</a>
+            <a class="button" href="#printables">CAD portfolio →</a>
+            <a class="button" href="#board-files">PCB files →</a>
+          </div>
         </div>
 
         <div class="hero-aside-stack">
@@ -1475,33 +1577,6 @@
         </div>
       </div>
 
-      <div class="hero-links-label">Credentials</div>
-      <div class="quick-links credential-links">
-        <button
-          class="button preview-button credential-trigger"
-          type="button"
-          data-credential="onshape"
-          data-pdf="onshapecertificate.pdf"
-          data-title="OnShape Associate Certification">
-          OnShape Associate Certification
-        </button>
-
-        <a
-          class="button credential-trigger"
-          data-credential="ut-project-management"
-          href="https://www.credential.net/e20c4d6e-1162-4c93-bdff-1b2a19c88b36#acc.cVKGbRLN"
-          target="_blank"
-          rel="noopener noreferrer">
-          UT Project Management Certification
-        </a>
-      </div>
-
-      <div class="hero-links-label">Explore project work</div>
-      <div class="quick-links project-navigation">
-        <a class="button" href="#projects">Featured projects →</a>
-        <a class="button" href="#printables">CAD portfolio →</a>
-        <a class="button" href="#board-files">PCB files →</a>
-      </div>
     </section>
 
     <section class="section" id="projects">
@@ -1774,7 +1849,7 @@
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
                     <a class="button xytheta-video-button" href="Converter%20(1).mp4" target="_blank" rel="noopener noreferrer" aria-label="Open XYTheta G-code app video">G-code App</a>
-                    <a class="button xytheta-progress-button" href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">Mechanical Progress</a>
+                    <a class="button xytheta-progress-button" href="PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">Mechanical Progress</a>
                   </div>
                 </div>
 
@@ -1784,6 +1859,36 @@
                     Your browser does not support the video tag.
                     <a href="Converter%20(1).mp4">Download the XYTheta Pen Plotter video</a>.
                   </video>
+                </div>
+
+                <div class="xytheta-progress-gallery" aria-label="XYTheta Pen Plotter build progress gallery">
+                  <div class="gallery-heading">
+                    <span>Build progress</span>
+                    <p>Five photos from the current mechanical build.</p>
+                  </div>
+
+                  <div class="gallery-grid">
+                    <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260608_211924723.jpg" data-media-title="XYTheta Pen Plotter Progress — June 8, 2026" aria-label="Open XYTheta Pen Plotter progress photo from June 8, 2026">
+                      <img src="PXL_20260608_211924723.jpg" alt="XYTheta Pen Plotter frame and circular mechanism during assembly" loading="lazy">
+                      <span>Jun 8</span>
+                    </button>
+                    <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260613_230118788.jpg" data-media-title="XYTheta Pen Plotter Progress — June 13, 2026" aria-label="Open XYTheta Pen Plotter progress photo from June 13, 2026">
+                      <img src="PXL_20260613_230118788.jpg" alt="XYTheta Pen Plotter mechanical build progress" loading="lazy">
+                      <span>Jun 13</span>
+                    </button>
+                    <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260716_001954352.jpg" data-media-title="XYTheta Pen Plotter Progress — July 16, 2026" aria-label="Open XYTheta Pen Plotter progress photo from July 16, 2026">
+                      <img src="PXL_20260716_001954352.jpg" alt="XYTheta Pen Plotter mechanical assembly staged for wiring" loading="lazy">
+                      <span>Jul 16</span>
+                    </button>
+                    <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260805_191519502.jpg" data-media-title="XYTheta Pen Plotter Progress — August 5, 2026" aria-label="Open XYTheta Pen Plotter progress photo from August 5, 2026">
+                      <img src="PXL_20260805_191519502.jpg" alt="XYTheta Pen Plotter mechanical build progress" loading="lazy">
+                      <span>Aug 5</span>
+                    </button>
+                    <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260808_221810825.jpg" data-media-title="XYTheta Pen Plotter Progress — August 8, 2026" aria-label="Open XYTheta Pen Plotter progress photo from August 8, 2026">
+                      <img src="PXL_20260808_221810825.jpg" alt="XYTheta Pen Plotter mechanical build progress" loading="lazy">
+                      <span>Aug 8</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -2038,9 +2143,9 @@
     const mediaModalContent = document.getElementById('mediaModalContent');
     const closeMediaButton = document.getElementById('closeMediaModal');
 
-    /* Only image/video popup triggers should open the media modal.
-       PDF hover-preview buttons also use .hover-popup-trigger, so this selector must stay restricted. */
-    const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type]');
+    /* Only image/video hover or gallery triggers should open the media modal.
+       PDF preview buttons must remain excluded. */
+    const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type], .gallery-photo[data-media-type]');
 
     const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
     const scaraPreviewSource = document.getElementById('scaraPreviewSource');
@@ -2199,8 +2304,8 @@
 
       xythetaPreviewArea.innerHTML = showProgressImage
         ? `
-          <a href="assets/PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">
-            <img src="assets/PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
+          <a href="PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">
+            <img src="PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
           </a>
         `
         : `
