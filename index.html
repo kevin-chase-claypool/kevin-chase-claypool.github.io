@@ -1371,13 +1371,67 @@
       .credential-preview-copy { padding: 20px; }
     }
 
+    /* Compact portfolio layout */
+    .hero {
+      padding: clamp(28px, 4vw, 42px);
+      background: #ffffff;
+    }
+
+    .hero::after { display: none; }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+      gap: clamp(28px, 5vw, 56px);
+    }
+
+    h1 {
+      max-width: 650px;
+      font-size: clamp(2.25rem, 4vw, 3.55rem);
+      letter-spacing: -0.05em;
+    }
+
+    .eyebrow,
+    .hero-links-label,
+    .hero-aside-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    .headline {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .hero-aside {
+      padding: 18px;
+      background: #ffffff;
+      border-color: #dce5f1;
+    }
+
+    .hero-aside h2 {
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-aside p { font-size: 0.88rem; }
+    .expertise-list span { font-size: 0.84rem; }
+
+    .section-card { padding: clamp(24px, 3vw, 36px); }
+
+    .section-card > h2,
+    .section-title-with-logo h2 {
+      font-size: clamp(1.8rem, 3vw, 2.55rem);
+      letter-spacing: -0.04em;
+    }
+
     footer { color: #74839a; }
   </style>
 </head>
 <body>
   <div class="container">
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="site-brand" href="#top">Kevin Claypool <span>/ EE</span></a>
+      <a class="site-brand" href="#top">Kevin Claypool <span>· Electrical Engineer</span></a>
       <div class="site-nav-links">
         <a href="#projects">Work</a>
         <a href="#printables">CAD Portfolio</a>
@@ -1403,8 +1457,8 @@
         <div class="hero-aside-stack">
           <aside class="hero-aside" aria-label="Engineering focus">
             <div class="hero-aside-label">Engineering focus</div>
-            <h2>Designing the system, not just the component.</h2>
-            <p>From mechanism to motion control, I connect the technical details that make a build work in the real world.</p>
+            <h2>Core strengths</h2>
+            <p>End-to-end hardware development from mechanism design through controls and test.</p>
             <div class="expertise-list">
               <span>Electromechanical design</span>
               <span>CAD &amp; rapid fabrication</span>
@@ -1452,9 +1506,9 @@
 
     <section class="section" id="projects">
       <div class="section-card">
-        <div class="eyebrow">Selected Systems</div>
-        <h2>Built for motion.<br>Proven in the field.</h2>
-        <p class="subtitle">A focused look at the systems I have designed, built, tested, and presented—from competition robots to precision motion platforms.</p>
+        <div class="eyebrow">Selected work</div>
+        <h2>Projects</h2>
+        <p class="subtitle">Robotics, motion systems, control hardware, and fabrication projects with media, CAD links, and specific contributions for each build.</p>
 
         <div class="projects-stack">
 
@@ -1754,7 +1808,7 @@
 
     <section class="section" id="printables">
       <div class="section-card">
-        <div class="eyebrow">Design for Fabrication</div>
+        <div class="eyebrow">CAD Portfolio</div>
         <div class="section-title-with-logo">
           <h2>Printables 3D Modeling Portfolio</h2>
           <svg class="printables-logo" viewBox="0 0 24.344 35" role="img" aria-label="Printables logo">
@@ -1769,7 +1823,7 @@
     <section class="section" id="board-files">
       <div class="section-card">
         <div class="eyebrow">PCB Design</div>
-        <h2>IEEE robotics<br>board files.</h2>
+        <h2>IEEE Robotics Board Files</h2>
         <p class="subtitle">Designed in KiCad for a two-plane milling process, with Onshape DXF files imported for accurate 3D model integration.</p>
 
         <div class="resource-list">
