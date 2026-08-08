@@ -497,11 +497,11 @@
       width: 100%;
       aspect-ratio: 1;
       padding: 0;
-      border: 1px solid #cbd9ea;
+      border: 1px solid #0f64bd;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 8px 20px rgba(30, 59, 98, 0.14);
-      color: var(--accent);
+      background: #0f64bd;
+      box-shadow: 0 10px 22px rgba(15, 100, 189, 0.3);
+      color: #ffffff;
       cursor: pointer;
       font: inherit;
       font-size: 2rem;
@@ -512,14 +512,18 @@
 
     .media-gallery-arrow:hover,
     .media-gallery-arrow:focus-visible {
-      border-color: #62a3ed;
-      background: #ffffff;
+      border-color: #084a91;
+      background: #084a91;
       transform: scale(1.06);
     }
 
     .media-gallery-arrow:disabled {
+      border-color: #d4e0ee;
+      background: #edf3fa;
+      box-shadow: none;
+      color: #8faed3;
       cursor: not-allowed;
-      opacity: 0.35;
+      opacity: 1;
       transform: none;
     }
 
@@ -1574,8 +1578,8 @@
     }
 
     @media (min-width: 1150px) {
-      .hero-aside-stack .credential-preview {
-        width: 520px;
+      .hero-aside-stack .credential-preview.has-preview {
+        width: min(560px, calc(100vw - 640px));
         justify-self: end;
       }
 
@@ -2291,6 +2295,8 @@
 
     function setCredentialPreview(type) {
       if (!credentialPreview) return;
+
+      credentialPreview.classList.add('has-preview');
 
       credentialTriggers.forEach((trigger) => {
         trigger.classList.toggle('is-active', trigger.dataset.credential === type);
