@@ -1565,6 +1565,25 @@
       .hero-aside-stack { max-width: 560px; }
     }
 
+    @media (min-width: 901px) and (max-width: 1149px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-aside-stack { max-width: none; }
+      .credential-preview-content {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+    }
+
+    @media (min-width: 1150px) {
+      .hero-aside-stack .credential-preview {
+        width: 520px;
+        justify-self: end;
+      }
+
+      .hero-aside-stack .credential-preview-content {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+    }
+
     footer { color: #74839a; }
   </style>
 </head>
