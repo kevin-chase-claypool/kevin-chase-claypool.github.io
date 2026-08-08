@@ -1494,9 +1494,21 @@
     .gallery-photo:hover img,
     .gallery-photo:focus-visible img { transform: scale(1.05); }
 
+    .project-media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .project-media-grid > div {
+      display: grid;
+      gap: 8px;
+    }
+
     @media (max-width: 700px) {
       .gallery-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
       .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .project-media-grid { grid-template-columns: 1fr; }
     }
 
     footer { color: #74839a; }
@@ -1815,11 +1827,24 @@
                 </div>
 
                 <div class="project-media">
-                  <video controls muted playsinline preload="metadata">
-                    <source src="Manual-XY.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    <a href="Manual-XY.mp4">Download the XY Plotter video</a>.
-                  </video>
+                  <div class="project-media-grid">
+                    <div>
+                      <video controls muted playsinline preload="metadata">
+                        <source src="Manual-XY.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        <a href="Manual-XY.mp4">Download the XY Plotter video</a>.
+                      </video>
+                      <p>XY Plotter motion demonstration.</p>
+                    </div>
+
+                    <div>
+                      <video class="silent-progress-video" autoplay muted loop playsinline preload="metadata" aria-label="Silent XY Plotter build progress video">
+                        <source src="PXL_20260409_203155840%20(1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p>XY Plotter build progress video (silent).</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
