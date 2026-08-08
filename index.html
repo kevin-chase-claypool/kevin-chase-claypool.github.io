@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kevin Chase Claypool | Portfolio</title>
+  <meta name="description" content="Electrical engineering portfolio for Kevin Chase Claypool, featuring electromechanical design, robotics, PCB design, controls, and CAD work." />
+  <meta property="og:title" content="Kevin Chase Claypool | Electrical Engineer" />
+  <meta property="og:description" content="Electromechanical design, robotics, PCB design, controls, and CAD work." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kevin-chase-claypool.github.io/" />
+  <meta property="og:image" content="https://kevin-chase-claypool.github.io/assets/og-portfolio.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --bg: #f5f7fa;
@@ -577,26 +584,480 @@
         display: none;
       }
     }
+
+    /* Portfolio redesign */
+    :root {
+      --bg: #08111f;
+      --panel: #0f1b2d;
+      --panel-soft: #14233a;
+      --text: #eef5ff;
+      --muted: #a8b7cc;
+      --accent: #68b5ff;
+      --accent-strong: #2778d4;
+      --accent-soft: rgba(104, 181, 255, 0.12);
+      --border: rgba(176, 207, 243, 0.16);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      --max: 1240px;
+    }
+
+    body {
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(40, 117, 208, 0.22), transparent 30rem),
+        radial-gradient(circle at 88% 28%, rgba(32, 154, 179, 0.13), transparent 26rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .container {
+      padding: 18px 20px 72px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: var(--max);
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      border: 1px solid rgba(176, 207, 243, 0.12);
+      border-radius: 14px;
+      background: rgba(8, 17, 31, 0.78);
+      backdrop-filter: blur(16px);
+    }
+
+    .site-brand {
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .site-brand span { color: var(--accent); }
+
+    .site-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .site-nav-links a {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      text-decoration: none;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .site-nav-links a:hover,
+    .site-nav-links a:focus-visible {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 8px;
+    }
+
+    .hero,
+    .section-card,
+    .project-card {
+      background: rgba(15, 27, 45, 0.82);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(30px, 5vw, 64px);
+      margin-bottom: 0;
+      border-radius: 28px;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -180px;
+      top: -220px;
+      z-index: -1;
+      border: 1px solid rgba(104, 181, 255, 0.24);
+      border-radius: 50%;
+      box-shadow: 0 0 0 45px rgba(104, 181, 255, 0.035), 0 0 0 92px rgba(104, 181, 255, 0.025);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+      gap: clamp(32px, 7vw, 90px);
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(2.75rem, 6.8vw, 5.9rem);
+      line-height: 0.97;
+      letter-spacing: -0.065em;
+      margin-bottom: 22px;
+    }
+
+    .headline {
+      max-width: 700px;
+      color: var(--text);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-weight: 650;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .hero-resume-actions,
+    .quick-links,
+    .project-links,
+    .resource-actions {
+      gap: 10px;
+    }
+
+    .hero-resume-actions { margin: 26px 0 0; }
+
+    a.button,
+    button.button,
+    .hover-popup-trigger {
+      min-height: 42px;
+      border-color: rgba(176, 207, 243, 0.22);
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text) !important;
+      font-size: 0.88rem;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    a.button:hover,
+    a.button:focus-visible,
+    button.button:hover,
+    button.button:focus-visible,
+    .hover-popup-trigger:hover,
+    .hover-popup-trigger:focus-visible {
+      background: rgba(104, 181, 255, 0.14);
+      border-color: rgba(104, 181, 255, 0.72);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .button.button-primary,
+    a.button.button-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #06101e !important;
+    }
+
+    .button.button-primary:hover,
+    .button.button-primary:focus-visible,
+    a.button.button-primary:hover,
+    a.button.button-primary:focus-visible {
+      background: #97ccff;
+      border-color: #97ccff;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid rgba(176, 207, 243, 0.14);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(104, 181, 255, 0.12), rgba(255,255,255,0.025));
+    }
+
+    .hero-aside-label {
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-aside h2 {
+      font-size: 1.35rem;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .hero-aside p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .expertise-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .expertise-list span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .expertise-list span::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(104, 181, 255, 0.75);
+    }
+
+    .hero-links-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin: 34px 0 10px;
+    }
+
+    .quick-links { margin-top: 0; }
+
+    .quick-links > a.button[href^="#"] {
+      background: transparent;
+      border-color: transparent;
+      color: var(--muted) !important;
+      padding-left: 4px;
+      padding-right: 8px;
+    }
+
+    .quick-links > a.button[href^="#"]:hover,
+    .quick-links > a.button[href^="#"]:focus-visible {
+      background: transparent;
+      color: var(--text) !important;
+      box-shadow: none;
+    }
+
+    .section { margin-top: 28px; }
+
+    .section-card {
+      padding: clamp(24px, 4vw, 46px);
+      border-radius: 28px;
+    }
+
+    .section-card > h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+    }
+
+    .section-title-with-logo h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .projects-stack {
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .project-card {
+      padding: clamp(18px, 3vw, 30px);
+      border-radius: 20px;
+      transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .project-card:hover {
+      background: rgba(20, 35, 58, 0.92);
+      border-color: rgba(104, 181, 255, 0.38);
+      transform: translateY(-3px);
+    }
+
+    .project-layout {
+      grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+      gap: clamp(20px, 4vw, 48px);
+    }
+
+    .project-main { gap: 20px; }
+
+    .project-header h3 {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    .project-kicker {
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .project-summary { font-size: 0.98rem; line-height: 1.55; }
+
+    .project-links { margin-top: 4px; }
+
+    .project-media iframe,
+    .project-media video,
+    .project-media img {
+      border: 1px solid rgba(176, 207, 243, 0.16);
+      border-radius: 14px;
+      background: #060d18;
+    }
+
+    .project-media p { font-size: 0.84rem; }
+
+    .project-side-panel {
+      background: rgba(5, 14, 26, 0.42);
+      border-color: rgba(176, 207, 243, 0.14);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .project-side-panel h4 {
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-bullets {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.52;
+    }
+
+    .project-bullets li::marker { color: var(--accent); }
+
+    .resource-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .resource-item {
+      height: 100%;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 20px;
+      background: rgba(5, 14, 26, 0.35);
+      border-color: rgba(176, 207, 243, 0.14);
+      border-radius: 16px;
+    }
+
+    .resource-item strong { font-size: 1rem; }
+    .resource-actions { margin-top: auto; }
+
+    .hover-popup-panel {
+      background: #102039;
+      border-color: rgba(176, 207, 243, 0.2);
+      box-shadow: 0 22px 56px rgba(0, 0, 0, 0.45);
+    }
+
+    .hover-popup-panel::before {
+      background: #102039;
+      border-color: rgba(176, 207, 243, 0.2);
+    }
+
+    .hover-popup-copy p,
+    .hover-popup-copy ul { color: var(--muted); }
+
+    .modal { background: rgba(2, 8, 17, 0.82); }
+    .modal-panel, .media-modal-panel { background: #102039; border-color: var(--border); }
+    .modal-header { background: #14233a; border-color: var(--border); }
+    .icon-button { background: rgba(255,255,255,0.06); border-color: var(--border); color: var(--text); }
+    .media-modal-body { background: #102039; }
+
+    .printables-logo { filter: drop-shadow(0 0 10px rgba(250, 104, 49, 0.4)); }
+
+    footer {
+      margin-top: 28px;
+      color: #718099;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .project-layout { grid-template-columns: 1fr; }
+      .hero-aside { max-width: 560px; }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 12px 14px 44px; }
+      .site-nav { align-items: flex-start; flex-direction: column; gap: 8px; padding: 8px 2px; }
+      .site-nav-links { justify-content: flex-start; }
+      .site-nav-links a { padding-left: 0; padding-right: 14px; }
+      .hero, .section-card { border-radius: 20px; }
+      .resource-list { grid-template-columns: 1fr; }
+      .quick-links > a.button[href^="#"] { min-height: 34px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <section class="hero">
-      <div class="eyebrow">Portfolio</div>
-      <h1>Kevin Chase Claypool</h1>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="site-brand" href="#top">Kevin Claypool <span>/ EE</span></a>
+      <div class="site-nav-links">
+        <a href="#projects">Work</a>
+        <a href="#printables">CAD Portfolio</a>
+        <a href="#board-files">PCB Files</a>
+        <a href="#resume">Resume</a>
+      </div>
+    </nav>
 
-      <div class="hero-resume-actions">
-        <button class="button preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview Resume</button>
-        <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Electrical Engineering Portfolio</div>
+          <h1>Kevin Chase<br>Claypool</h1>
+          <div class="headline">Electrical engineer building reliable electromechanical systems—from CAD and PCB design to controls, testing, and competition-ready hardware.</div>
+          <p class="subtitle">Explore a focused collection of robotics, motion systems, circuit boards, and fabrication work—with the decisions and deliverables behind each project.</p>
+
+          <div class="hero-resume-actions">
+            <button class="button button-primary preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview resume</button>
+            <a class="button" href="assets/Kevin Claypool Resume July 2025.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-label="Engineering focus">
+          <div class="hero-aside-label">Engineering focus</div>
+          <h2>Designing the system, not just the component.</h2>
+          <p>From mechanism to motion control, I connect the technical details that make a build work in the real world.</p>
+          <div class="expertise-list">
+            <span>Electromechanical design</span>
+            <span>CAD &amp; rapid fabrication</span>
+            <span>PCB design &amp; system test</span>
+          </div>
+        </aside>
       </div>
 
-      <div class="headline">Electrical Engineer | Electromechanical Design</div>
-      <p class="subtitle">Project media, CAD workspaces, board design files and contribution bullet lists for each major project.</p>
-
+      <div class="hero-links-label">Explore the portfolio</div>
       <div class="quick-links">
-        <a class="button" href="#projects">Projects</a>
-        <a class="button" href="#printables">FDM-Specific 3d Modeling Portfolio</a>
-        <a class="button" href="#board-files">IEEE Competition PCB Files</a>
+        <a class="button" href="#projects">Featured projects →</a>
+        <a class="button" href="#printables">CAD portfolio →</a>
+        <a class="button" href="#board-files">PCB files →</a>
 
         <div class="hover-popup-wrap">
           <button
@@ -635,9 +1096,9 @@
 
     <section class="section" id="projects">
       <div class="section-card">
-        <div class="eyebrow">Featured Work</div>
-        <h2>Project Portfolio</h2>
-        <p class="subtitle">Each project includes a dedicated contribution panel to enumerate project responsibilities.</p>
+        <div class="eyebrow">Selected Systems</div>
+        <h2>Built for motion.<br>Proven in the field.</h2>
+        <p class="subtitle">A focused look at the systems I have designed, built, tested, and presented—from competition robots to precision motion platforms.</p>
 
         <div class="projects-stack">
 
@@ -645,6 +1106,7 @@
             <div class="project-layout">
               <div class="project-main">
                 <div class="project-header">
+                  <div class="project-kicker">Robotics · Systems Integration</div>
                   <h3>2026 Region 5 IEEE Robotics Competition Champion Robot</h3>
                   <p class="project-summary">Competition robot integrating mechanical systems, electronics, controls, and fabrication for autonomous task execution.</p>
 
@@ -721,12 +1183,12 @@
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
-                    <li class="placeholder">Liason between mechanical and electrical engineering teams</li>
-                    <li class="placeholder">Served as most senior OnShape 3d modeler.</li>
+                    <li class="placeholder">Liaison between mechanical and electrical engineering teams.</li>
+                    <li class="placeholder">Served as the senior Onshape 3D modeler.</li>
                     <li class="placeholder">Led troubleshooting and testing of electromechanical components.</li>
                     <li class="placeholder">Validated performance using metrics associated with competition rules.</li>
-                    <li class="placeholder">End-to-end mainboard PCB and power distribition PCB designer</li>
-                    <li class="placeholder">Designed mission critical lead-screw centered retention and evacuation bins</li>
+                    <li class="placeholder">End-to-end designer for the mainboard PCB and power-distribution PCB.</li>
+                    <li class="placeholder">Designed mission-critical, lead-screw-driven retention and evacuation bins.</li>
                   </ul>
                 </div>
               </div>
@@ -737,6 +1199,7 @@
             <div class="project-layout">
               <div class="project-main">
                 <div class="project-header">
+                  <div class="project-kicker">Robotics · Motion Design</div>
                   <h3>SCARA Robot</h3>
                   <p class="project-summary">SCARA mechanical design project with a system demonstration video and a separate linked technical presentation.</p>
 
@@ -806,7 +1269,7 @@
                 <div class="project-side-panel">
                   <h4>My Involvement</h4>
                   <ul class="project-bullets">
-                    <li class="placeholder">Modeled end to end project in OnShape based on kinematic reference.</li>
+                    <li class="placeholder">Modeled the end-to-end project in Onshape from a kinematic reference.</li>
                     <li class="placeholder">Selected/sized components primarily around slew bearings and Nema 23 motors.</li>
                     <li class="placeholder">Printed in nylon-carbon fiber for rigidity and load minimization.</li>
                   </ul>
@@ -819,6 +1282,7 @@
             <div class="project-layout">
               <div class="project-main">
                 <div class="project-header">
+                  <div class="project-kicker">Controls · Electromechanical Prototype</div>
                   <h3>Axial Pulse Motor Control System</h3>
                   <p class="project-summary">Electromechanical motor prototype with control, fabrication and test workflow captured in video and CAD.</p>
 
@@ -856,8 +1320,9 @@
             <div class="project-layout">
               <div class="project-main">
                 <div class="project-header">
+                  <div class="project-kicker">Motion Platform · Embedded Control</div>
                   <h3>XY Plotter</h3>
-                  <p class="project-summary">Arcade controller-driven motion for game platform.</p>
+                  <p class="project-summary">Arcade-controller-driven motion system for a game platform.</p>
 
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/848afd2dae8a98acbc81c74d/w/713636e0881cb142dd0360ad/e/8a84a576b5dba42bb55e0c10?renderMode=0&amp;uiState=69d1607d795636d0cc8fbfd7" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
@@ -892,7 +1357,7 @@
             <div class="project-layout">
               <div class="project-main">
                 <div class="project-header">
-                  <div class="eyebrow">In Progress</div>
+                  <div class="project-kicker">In Progress · Motion Platform</div>
                   <h3>XYTheta Pen Plotter</h3>
                   <p class="project-summary">XYTheta pen plotter currently under development.</p>
 
@@ -933,21 +1398,23 @@
 
     <section class="section" id="printables">
       <div class="section-card">
+        <div class="eyebrow">Design for Fabrication</div>
         <div class="section-title-with-logo">
-          <h2>Printables 3d Modeling Portfolio</h2>
+          <h2>Printables 3D Modeling Portfolio</h2>
           <svg class="printables-logo" viewBox="0 0 24.344 35" role="img" aria-label="Printables logo">
             <path d="m0 35 12.172-7L0 21ZM12.172 0 0 7l12.172 7v14l12.172-7V7Z"></path>
           </svg>
         </div>
-        <p class="subtitle">Collection of fused deposition modeling designs published on Printables, demonstrating CAD development, practical design-for-manufacturing/ additive manufacturing</p>
-        <a class="button" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View Modeling Portfolio</a>
+        <p class="subtitle">A collection of fused-deposition-modeling designs that demonstrate practical CAD development, design for manufacturing, and additive-manufacturing thinking.</p>
+        <a class="button button-primary" href="https://www.printables.com/@KevinClaypoo_1131590" target="_blank" rel="noopener noreferrer">View the CAD portfolio →</a>
       </div>
     </section>
 
     <section class="section" id="board-files">
       <div class="section-card">
-        <h2>Board Design Files for Region 5 IEEE 2026 Champion Model</h2>
-        <p class="subtitle">Designed in KiCAD for a two-plane milling process. DXF files from Onshape were imported into KiCAD for 3D model integration.</p>
+        <div class="eyebrow">PCB Design</div>
+        <h2>IEEE robotics<br>board files.</h2>
+        <p class="subtitle">Designed in KiCad for a two-plane milling process, with Onshape DXF files imported for accurate 3D model integration.</p>
 
         <div class="resource-list">
           <div class="resource-item">
@@ -1099,6 +1566,7 @@
 
     <section class="section" id="resume">
       <div class="section-card">
+        <div class="eyebrow">Professional Background</div>
         <h2>Resume</h2>
 
         <div class="resource-list">
@@ -1141,7 +1609,7 @@
       </div>
     </div>
 
-    <footer>GitHub Pages-ready portfolio landing page.</footer>
+    <footer>Designed and built by Kevin Chase Claypool · Electrical Engineering Portfolio</footer>
   </div>
 
   <script>
