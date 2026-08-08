@@ -1494,6 +1494,17 @@
     .gallery-photo:hover img,
     .gallery-photo:focus-visible img { transform: scale(1.05); }
 
+    .modal-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-header-actions .icon-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
     .project-media-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1874,7 +1885,6 @@
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
                     <a class="button xytheta-video-button" href="Converter%20(1).mp4" target="_blank" rel="noopener noreferrer" aria-label="Open XYTheta G-code app video">G-code App</a>
-                    <a class="button xytheta-progress-button" href="PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">Mechanical Progress</a>
                   </div>
                 </div>
 
@@ -2140,7 +2150,11 @@
       <div class="media-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mediaModalTitle">
         <div class="modal-header">
           <div class="modal-title" id="mediaModalTitle">Media Preview</div>
-          <button class="icon-button" type="button" id="closeMediaModal">Close</button>
+          <div class="modal-header-actions">
+            <button class="icon-button" type="button" id="previousMediaButton" hidden aria-label="Show previous progress photo">Previous</button>
+            <button class="icon-button" type="button" id="nextMediaButton" hidden aria-label="Show next progress photo">Next</button>
+            <button class="icon-button" type="button" id="closeMediaModal">Close</button>
+          </div>
         </div>
 
         <div class="media-modal-body">
@@ -2167,10 +2181,14 @@
     const mediaModalTitle = document.getElementById('mediaModalTitle');
     const mediaModalContent = document.getElementById('mediaModalContent');
     const closeMediaButton = document.getElementById('closeMediaModal');
+    const previousMediaButton = document.getElementById('previousMediaButton');
+    const nextMediaButton = document.getElementById('nextMediaButton');
 
     /* Only image/video hover or gallery triggers should open the media modal.
        PDF preview buttons must remain excluded. */
     const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type], .gallery-photo[data-media-type]');
+    const galleryPhotos = Array.from(document.querySelectorAll('.gallery-photo[data-media-type]'));
+    let activeGalleryIndex = -1;
 
     const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
     const scaraPreviewSource = document.getElementById('scaraPreviewSource');
@@ -2181,7 +2199,6 @@
 
     const xythetaPreviewArea = document.getElementById('xythetaPreviewArea');
     const xythetaVideoButtons = document.querySelectorAll('.xytheta-video-button');
-    const xythetaProgressButtons = document.querySelectorAll('.xytheta-progress-button');
 
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
@@ -2256,9 +2273,23 @@
       }
     }
 
-    function openMediaModal(type, src, titleText) {
+    function setGalleryNavigation(index) {
+      activeGalleryIndex = index;
+      const isGalleryPhoto = index >= 0;
+
+      previousMediaButton.hidden = !isGalleryPhoto;
+      nextMediaButton.hidden = !isGalleryPhoto;
+
+      if (isGalleryPhoto) {
+        previousMediaButton.disabled = index === 0;
+        nextMediaButton.disabled = index === galleryPhotos.length - 1;
+      }
+    }
+
+    function openMediaModal(type, src, titleText, galleryIndex = -1) {
       mediaModalTitle.textContent = titleText;
       mediaModalContent.innerHTML = '';
+      setGalleryNavigation(galleryIndex);
 
       if (type === 'image') {
         const img = document.createElement('img');
@@ -2280,10 +2311,23 @@
       updateBodyModalState();
     }
 
+    function showGalleryPhoto(index) {
+      const photo = galleryPhotos[index];
+      if (!photo) return;
+
+      openMediaModal(
+        photo.dataset.mediaType,
+        photo.dataset.mediaSrc,
+        photo.dataset.mediaTitle,
+        index
+      );
+    }
+
     function closeMediaModal() {
       mediaModal.classList.remove('open');
       mediaModal.setAttribute('aria-hidden', 'true');
       mediaModalContent.innerHTML = '';
+      setGalleryNavigation(-1);
       updateBodyModalState();
     }
 
@@ -2324,16 +2368,10 @@
       }
     }
 
-    function setXythetaProgressPreview(showProgressImage) {
+    function setXythetaPreview() {
       if (!xythetaPreviewArea) return;
 
-      xythetaPreviewArea.innerHTML = showProgressImage
-        ? `
-          <a href="PXL_20260716_001954352.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size XYTheta mechanical progress image">
-            <img src="PXL_20260716_001954352.jpg" alt="XYTheta pen plotter mechanical assembly completed and staged for wiring">
-          </a>
-        `
-        : `
+      xythetaPreviewArea.innerHTML = `
           <video controls muted playsinline preload="metadata">
             <source src="Converter%20(1).mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -2356,11 +2394,17 @@
 
     mediaTriggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
-        openMediaModal(
-          trigger.dataset.mediaType,
-          trigger.dataset.mediaSrc,
-          trigger.dataset.mediaTitle
-        );
+        const galleryIndex = galleryPhotos.indexOf(trigger);
+
+        if (galleryIndex >= 0) {
+          showGalleryPhoto(galleryIndex);
+        } else {
+          openMediaModal(
+            trigger.dataset.mediaType,
+            trigger.dataset.mediaSrc,
+            trigger.dataset.mediaTitle
+          );
+        }
       });
     });
 
@@ -2388,20 +2432,15 @@
       });
     });
 
-    xythetaProgressButtons.forEach((button) => {
-      button.addEventListener('mouseenter', () => setXythetaProgressPreview(true));
-      button.addEventListener('focus', () => setXythetaProgressPreview(true));
-      button.addEventListener('mouseleave', () => setXythetaProgressPreview(false));
-      button.addEventListener('blur', () => setXythetaProgressPreview(false));
-    });
-
     xythetaVideoButtons.forEach((button) => {
-      button.addEventListener('mouseenter', () => setXythetaProgressPreview(false));
-      button.addEventListener('focus', () => setXythetaProgressPreview(false));
+      button.addEventListener('mouseenter', setXythetaPreview);
+      button.addEventListener('focus', setXythetaPreview);
     });
 
     closePdfButton.addEventListener('click', closePdfModal);
     closeMediaButton.addEventListener('click', closeMediaModal);
+    previousMediaButton.addEventListener('click', () => showGalleryPhoto(activeGalleryIndex - 1));
+    nextMediaButton.addEventListener('click', () => showGalleryPhoto(activeGalleryIndex + 1));
 
     pdfModal.addEventListener('click', (event) => {
       if (event.target === pdfModal) {
@@ -2416,6 +2455,20 @@
     });
 
     document.addEventListener('keydown', (event) => {
+      if (mediaModal.classList.contains('open') && activeGalleryIndex >= 0) {
+        if (event.key === 'ArrowLeft' && activeGalleryIndex > 0) {
+          event.preventDefault();
+          showGalleryPhoto(activeGalleryIndex - 1);
+          return;
+        }
+
+        if (event.key === 'ArrowRight' && activeGalleryIndex < galleryPhotos.length - 1) {
+          event.preventDefault();
+          showGalleryPhoto(activeGalleryIndex + 1);
+          return;
+        }
+      }
+
       if (event.key === 'Escape') {
         if (mediaModal.classList.contains('open')) {
           closeMediaModal();
