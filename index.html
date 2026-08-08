@@ -468,19 +468,59 @@
 
     .media-modal-content {
       width: 100%;
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: clamp(40px, 4vw, 54px) minmax(0, 1fr) clamp(40px, 4vw, 54px);
       align-items: center;
+      gap: 12px;
       min-height: 320px;
     }
 
-    .media-modal-content img,
-    .media-modal-content video {
+    .media-modal-frame {
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .media-modal-frame img,
+    .media-modal-frame video {
       max-width: 100%;
       max-height: calc(92vh - 110px);
       border-radius: 16px;
       background: #d8dee6;
       display: block;
+    }
+
+    .media-gallery-arrow {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 1;
+      padding: 0;
+      border: 1px solid #cbd9ea;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 20px rgba(30, 59, 98, 0.14);
+      color: var(--accent);
+      cursor: pointer;
+      font: inherit;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .media-gallery-arrow:hover,
+    .media-gallery-arrow:focus-visible {
+      border-color: #62a3ed;
+      background: #ffffff;
+      transform: scale(1.06);
+    }
+
+    .media-gallery-arrow:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+      transform: none;
     }
 
     footer {
@@ -1494,17 +1534,6 @@
     .gallery-photo:hover img,
     .gallery-photo:focus-visible img { transform: scale(1.05); }
 
-    .modal-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .modal-header-actions .icon-button:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-    }
-
     .project-media-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2150,15 +2179,15 @@
       <div class="media-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mediaModalTitle">
         <div class="modal-header">
           <div class="modal-title" id="mediaModalTitle">Media Preview</div>
-          <div class="modal-header-actions">
-            <button class="icon-button" type="button" id="previousMediaButton" hidden aria-label="Show previous progress photo">Previous</button>
-            <button class="icon-button" type="button" id="nextMediaButton" hidden aria-label="Show next progress photo">Next</button>
-            <button class="icon-button" type="button" id="closeMediaModal">Close</button>
-          </div>
+          <button class="icon-button" type="button" id="closeMediaModal">Close</button>
         </div>
 
         <div class="media-modal-body">
-          <div class="media-modal-content" id="mediaModalContent"></div>
+          <div class="media-modal-content">
+            <button class="media-gallery-arrow" type="button" id="previousMediaButton" hidden aria-label="Show previous progress photo"><span aria-hidden="true">‹</span></button>
+            <div class="media-modal-frame" id="mediaModalContent"></div>
+            <button class="media-gallery-arrow" type="button" id="nextMediaButton" hidden aria-label="Show next progress photo"><span aria-hidden="true">›</span></button>
+          </div>
         </div>
       </div>
     </div>
