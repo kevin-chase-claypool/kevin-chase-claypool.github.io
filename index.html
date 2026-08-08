@@ -9,7 +9,7 @@
   <meta property="og:description" content="Electromechanical design, robotics, PCB design, controls, and CAD work." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kevin-chase-claypool.github.io/" />
-  <meta property="og:image" content="https://kevin-chase-claypool.github.io/assets/og-portfolio.png" />
+  <meta property="og:image" content="https://kevin-chase-claypool.github.io/assets/og-portfolio-light.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
@@ -1013,6 +1013,153 @@
       .resource-list { grid-template-columns: 1fr; }
       .quick-links > a.button[href^="#"] { min-height: 34px; }
     }
+
+    /* Light, hiring-manager-focused refinement */
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --panel-soft: #f7faff;
+      --text: #14213a;
+      --muted: #5e6f88;
+      --accent: #155fba;
+      --accent-strong: #0f4e9d;
+      --accent-soft: #e9f2ff;
+      --border: #dce5f1;
+      --shadow: 0 18px 50px rgba(36, 61, 97, 0.09);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 84% 5%, rgba(57, 133, 225, 0.11), transparent 27rem),
+        linear-gradient(180deg, #f8faff 0%, #f4f7fb 48%, #f7f9fc 100%);
+    }
+
+    .site-nav {
+      border-color: rgba(28, 70, 123, 0.11);
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 5px 22px rgba(36, 61, 97, 0.06);
+    }
+
+    .site-brand { color: var(--text); }
+    .site-nav-links a { color: #5c6d85; }
+    .site-nav-links a:hover,
+    .site-nav-links a:focus-visible { background: #eff5fc; color: var(--accent); }
+
+    .hero,
+    .section-card,
+    .project-card {
+      background: rgba(255, 255, 255, 0.94);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      background: linear-gradient(138deg, rgba(255,255,255,0.98), rgba(243,248,255,0.94));
+    }
+
+    .hero::after {
+      border-color: rgba(21, 95, 186, 0.15);
+      box-shadow: 0 0 0 45px rgba(21, 95, 186, 0.025), 0 0 0 92px rgba(21, 95, 186, 0.018);
+    }
+
+    .headline { color: #1d3555; }
+
+    .hero-aside {
+      border-color: #dce8f6;
+      background: linear-gradient(145deg, #edf5ff, #f9fbff);
+    }
+
+    .hero-aside h2 { color: var(--text); }
+    .hero-aside p { color: var(--muted); }
+    .expertise-list span { color: #263d5d; }
+    .expertise-list span::before { box-shadow: none; background: var(--accent); }
+
+    a.button,
+    button.button,
+    .hover-popup-trigger {
+      border-color: #d4e0ef;
+      background: #ffffff;
+      color: #1a3150 !important;
+    }
+
+    a.button:hover,
+    a.button:focus-visible,
+    button.button:hover,
+    button.button:focus-visible,
+    .hover-popup-trigger:hover,
+    .hover-popup-trigger:focus-visible {
+      background: #f2f7fe;
+      border-color: #82b4ed;
+      box-shadow: 0 8px 20px rgba(34, 88, 151, 0.11);
+    }
+
+    .button.button-primary,
+    a.button.button-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff !important;
+    }
+
+    .button.button-primary:hover,
+    .button.button-primary:focus-visible,
+    a.button.button-primary:hover,
+    a.button.button-primary:focus-visible {
+      background: var(--accent-strong);
+      border-color: var(--accent-strong);
+    }
+
+    .quick-links > a.button[href^="#"] {
+      background: #ffffff;
+      border-color: #d4e0ef;
+      color: #1a3150 !important;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .quick-links > a.button[href^="#"]:hover,
+    .quick-links > a.button[href^="#"]:focus-visible {
+      background: #f2f7fe;
+      color: var(--accent) !important;
+    }
+
+    .project-card:hover {
+      background: #ffffff;
+      border-color: #b8d2f0;
+      box-shadow: 0 20px 42px rgba(36, 61, 97, 0.12);
+    }
+
+    .project-media iframe,
+    .project-media video,
+    .project-media img { border-color: #dce5f1; background: #edf1f6; }
+
+    .project-side-panel {
+      background: #f7faff;
+      border-color: #e0e9f5;
+    }
+
+    .project-bullets { color: #52647d; }
+    .project-summary { color: var(--muted); }
+
+    .resource-item {
+      background: #f9fbfe;
+      border-color: #e0e8f3;
+    }
+
+    .hover-popup-panel {
+      background: #ffffff;
+      border-color: #dce5f1;
+      box-shadow: 0 22px 56px rgba(30, 59, 98, 0.18);
+    }
+
+    .hover-popup-panel::before { background: #ffffff; border-color: #dce5f1; }
+    .hover-popup-copy p, .hover-popup-copy ul { color: var(--muted); }
+
+    .modal { background: rgba(20, 33, 58, 0.58); }
+    .modal-panel, .media-modal-panel { background: #ffffff; border-color: var(--border); }
+    .modal-header, .media-modal-body { background: #f7faff; border-color: var(--border); }
+    .icon-button { background: #ffffff; border-color: var(--border); color: var(--text); }
+
+    footer { color: #74839a; }
   </style>
 </head>
 <body>
@@ -1031,9 +1178,9 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Electrical Engineering Portfolio</div>
-          <h1>Kevin Chase<br>Claypool</h1>
-          <div class="headline">Electrical engineer building reliable electromechanical systems—from CAD and PCB design to controls, testing, and competition-ready hardware.</div>
-          <p class="subtitle">Explore a focused collection of robotics, motion systems, circuit boards, and fabrication work—with the decisions and deliverables behind each project.</p>
+          <h1>Kevin Chase Claypool</h1>
+          <div class="headline">Electrical Engineer · Electromechanical Design</div>
+          <p class="subtitle">I design, build, and test electromechanical systems—bringing together CAD, electronics, controls, and fabrication.</p>
 
           <div class="hero-resume-actions">
             <button class="button button-primary preview-button" type="button" data-pdf="assets/Kevin Claypool Resume July 2025.pdf" data-title="Kevin Claypool Resume">Preview resume</button>
@@ -1053,12 +1200,8 @@
         </aside>
       </div>
 
-      <div class="hero-links-label">Explore the portfolio</div>
-      <div class="quick-links">
-        <a class="button" href="#projects">Featured projects →</a>
-        <a class="button" href="#printables">CAD portfolio →</a>
-        <a class="button" href="#board-files">PCB files →</a>
-
+      <div class="hero-links-label">Credentials</div>
+      <div class="quick-links credential-links">
         <div class="hover-popup-wrap">
           <button
             class="hover-popup-trigger preview-button"
@@ -1091,6 +1234,13 @@
           rel="noopener noreferrer">
           UT Project Management Certification
         </a>
+      </div>
+
+      <div class="hero-links-label">Explore project work</div>
+      <div class="quick-links project-navigation">
+        <a class="button" href="#projects">Featured projects →</a>
+        <a class="button" href="#printables">CAD portfolio →</a>
+        <a class="button" href="#board-files">PCB files →</a>
       </div>
     </section>
 
