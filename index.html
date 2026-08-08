@@ -1127,6 +1127,7 @@
       gap: 14px;
       align-self: start;
       container-type: inline-size;
+      min-width: 0;
     }
 
     .hero-aside-stack .credential-preview {
@@ -1579,8 +1580,10 @@
 
     @media (min-width: 1150px) {
       .hero-aside-stack .credential-preview.has-preview {
-        width: min(560px, calc(100vw - 640px));
-        justify-self: end;
+        --active-preview-width: min(560px, calc(100vw - 640px));
+        width: var(--active-preview-width);
+        margin-left: calc(100% - var(--active-preview-width));
+        justify-self: start;
       }
 
       .hero-aside-stack .credential-preview-content {
@@ -1923,7 +1926,7 @@
             <div class="expertise-list">
               <span>Electromechanical design</span>
               <span>CAD &amp; rapid fabrication</span>
-              <span>PCB design &amp; system test</span>
+              <span>PCB design &amp; system testing</span>
             </div>
           </aside>
 
