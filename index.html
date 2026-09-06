@@ -2130,23 +2130,21 @@
                   <p class="project-summary">SCARA mechanical design project with a system demonstration video and a separate linked technical presentation.</p>
 
                   <div class="project-links">
-                    <a
+                    <button
                       class="button scara-video-button"
-                      href="scara_talk%20(1).mp4"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-video-src="scara_talk%20(1).mp4">
+                      type="button"
+                      data-video-src="scara_talk%20(1).mp4"
+                      data-video-title="SCARA Technical Presentation">
                       Technical Presentation
-                    </a>
+                    </button>
 
-                    <a
+                    <button
                       class="button scara-video-button"
-                      href="scara_move.mp4"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-video-src="scara_move.mp4">
+                      type="button"
+                      data-video-src="scara_move.mp4"
+                      data-video-title="SCARA Movement Demo">
                       Movement Demo
-                    </a>
+                    </button>
 
                     <a
                       class="button"
@@ -2187,7 +2185,7 @@
                     Your browser does not support the video tag.
                   </video>
 
-                  <p>Hover over “Technical Presentation” or “Movement Demo” to preview the associated SCARA video. Click either button to open that video directly.</p>
+                  <p>Hover over “Technical Presentation” or “Movement Demo” to preview the associated SCARA video. Click either button to open the larger in-page player.</p>
                 </div>
               </div>
 
@@ -2310,17 +2308,27 @@
 
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
-                    <a class="button xytheta-video-button" href="Converter%20(1).mp4" target="_blank" rel="noopener noreferrer" data-video-src="Converter%20(1).mp4" data-video-label="XYTheta G-code App" aria-label="Open XYTheta G-code app video">G-code App</a>
-                    <a class="button xytheta-video-button" href="https://github.com/kevin-chase-claypool/kevin-chase-claypool.github.io/releases/download/xy-theta-plotter-update2-2026-09-06/PXL_20260906_201430583.1.1.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://github.com/kevin-chase-claypool/kevin-chase-claypool.github.io/releases/download/xy-theta-plotter-update2-2026-09-06/PXL_20260906_201430583.1.1.mp4" data-video-label="XYTheta Plotter Update — September 6, 2026" aria-label="Open XYTheta Plotter update video from September 6, 2026">Update · Sep 6, 2026</a>
                   </div>
                 </div>
 
-                <div class="project-media" id="xythetaPreviewArea">
-                  <video controls muted playsinline preload="metadata">
-                    <source src="Converter%20(1).mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    <a href="Converter%20(1).mp4">Download the XYTheta Pen Plotter video</a>.
-                  </video>
+                <div class="project-media">
+                  <div class="project-media-grid">
+                    <div>
+                      <video controls muted playsinline preload="metadata">
+                        <source src="Converter%20(1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p>XYTheta G-code application.</p>
+                    </div>
+
+                    <div>
+                      <video controls muted playsinline preload="metadata">
+                        <source src="https://github.com/kevin-chase-claypool/kevin-chase-claypool.github.io/releases/download/xy-theta-plotter-update2-2026-09-06/PXL_20260906_201430583.1.1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p>XYTheta pen plotter update — September 6, 2026.</p>
+                    </div>
+                  </div>
                 </div>
 
                   <div class="xytheta-progress-gallery" aria-label="XYTheta Pen Plotter build progress gallery">
@@ -2623,8 +2631,6 @@
     const competitionPreviewArea = document.getElementById('competitionPreviewArea');
     const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
 
-    const xythetaPreviewArea = document.getElementById('xythetaPreviewArea');
-    const xythetaVideoButtons = document.querySelectorAll('.xytheta-video-button');
 
     function updateBodyModalState() {
       const anyModalOpen = pdfModal.classList.contains('open') || mediaModal.classList.contains('open');
@@ -2796,18 +2802,6 @@
       }
     }
 
-    function setXythetaPreview(videoSrc, videoLabel) {
-      if (!xythetaPreviewArea) return;
-
-      xythetaPreviewArea.innerHTML = `
-          <video controls muted playsinline preload="metadata">
-            <source src="${videoSrc}" type="video/mp4">
-            Your browser does not support the video tag.
-            <a href="${videoSrc}">Open ${videoLabel}</a>.
-          </video>
-        `;
-    }
-
     previewButtons.forEach((button) => {
       button.addEventListener('click', () => {
         openPdfModal(button.dataset.pdf, button.dataset.title);
@@ -2844,6 +2838,10 @@
       button.addEventListener('focus', () => {
         setScaraPreview(button.dataset.videoSrc);
       });
+
+      button.addEventListener('click', () => {
+        openMediaModal('video', button.dataset.videoSrc, button.dataset.videoTitle);
+      });
     });
 
     competitionPreviewButtons.forEach((button) => {
@@ -2858,12 +2856,6 @@
       button.addEventListener('click', () => {
         setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
       });
-    });
-
-    xythetaVideoButtons.forEach((button) => {
-      const preview = () => setXythetaPreview(button.dataset.videoSrc, button.dataset.videoLabel);
-      button.addEventListener('mouseenter', preview);
-      button.addEventListener('focus', preview);
     });
 
     closePdfButton.addEventListener('click', closePdfModal);
