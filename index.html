@@ -2185,7 +2185,7 @@
                     Your browser does not support the video tag.
                   </video>
 
-                  <p>Hover over “Technical Presentation” or “Movement Demo” to preview the associated SCARA video. Click either button to open the larger in-page player.</p>
+                  <p>Hover over “Technical Presentation” or “Movement Demo” to preview the associated SCARA video below.</p>
                 </div>
               </div>
 
@@ -2839,9 +2839,6 @@
         setScaraPreview(button.dataset.videoSrc);
       });
 
-      button.addEventListener('click', () => {
-        openMediaModal('video', button.dataset.videoSrc, button.dataset.videoTitle);
-      });
     });
 
     competitionPreviewButtons.forEach((button) => {
