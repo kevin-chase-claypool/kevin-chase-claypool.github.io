@@ -1651,6 +1651,49 @@
       gap: clamp(34px, 5vw, 64px);
     }
 
+    .hero-identity {
+      display: grid;
+      grid-template-columns: clamp(132px, 13vw, 176px) minmax(0, 1fr);
+      gap: clamp(20px, 3vw, 32px);
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .hero-identity-copy {
+      min-width: 0;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #dce7f4;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 16px 34px rgba(36, 79, 130, 0.14);
+    }
+
+    .hero-portrait img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      object-fit: cover;
+      object-position: center 36%;
+    }
+
+    .hero-identity .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .hero-identity h1 {
+      margin-bottom: 12px;
+    }
+
+    .hero-identity .headline {
+      margin-bottom: 0;
+    }
+
     h1 {
       max-width: 680px;
       font-size: clamp(2.45rem, 4.3vw, 3.85rem);
@@ -1896,6 +1939,18 @@
       .hero, .section-card { border-radius: 20px; }
       .hero { padding: 26px 22px; }
       h1 { font-size: clamp(2.25rem, 11vw, 3.15rem); }
+      .hero-identity {
+        grid-template-columns: 116px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+        margin-bottom: 16px;
+      }
+      .hero-portrait { padding: 4px; border-radius: 18px; }
+      .hero-portrait img { border-radius: 14px; }
+      .hero-identity h1 {
+        font-size: clamp(2rem, 9vw, 2.55rem);
+        line-height: 1.03;
+      }
       .site-nav-links { gap: 0; }
       .site-nav-links a { padding: 6px 8px; }
       .project-card { padding: 20px; }
@@ -1999,9 +2054,20 @@
     <section class="hero" id="top">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Electrical Engineering Portfolio</div>
-          <h1>Kevin Chase Claypool</h1>
-          <div class="headline">Electrical Engineer · Electromechanical Design</div>
+          <div class="hero-identity">
+            <div class="hero-portrait">
+              <img
+                src="assets/Kevin%20Claypool%20(1).jpg"
+                alt="Portrait of Kevin Chase Claypool"
+                width="1879"
+                height="2468">
+            </div>
+            <div class="hero-identity-copy">
+              <div class="eyebrow">Electrical Engineering Portfolio</div>
+              <h1>Kevin Chase Claypool</h1>
+              <div class="headline">Electrical Engineer · Electromechanical Design</div>
+            </div>
+          </div>
           <p class="subtitle">I design, build, and test electromechanical systems, bringing together CAD, electronics, controls, and fabrication.</p>
 
           <div class="hero-resume-actions">
