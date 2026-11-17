@@ -1829,12 +1829,23 @@
       box-shadow: 0 8px 18px rgba(36, 66, 107, 0.08);
     }
 
-    .project-links .xytheta-video-button.is-active {
+    .project-links .xytheta-video-button.is-active,
+    .project-links .competition-preview-button.is-active {
       border-color: #1767c2;
       background: linear-gradient(135deg, #1767c2, #0f56aa);
       box-shadow: 0 10px 20px rgba(17, 89, 177, 0.2);
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff;
+    }
+
+    #competitionPreviewArea .competition-preview-image {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: min(70vh, 620px);
+      margin: 0 auto;
+      aspect-ratio: auto;
+      object-fit: contain;
     }
 
     .xytheta-video-stage {
@@ -2068,10 +2079,14 @@
 
                   <div class="project-links">
                     <button
-                      class="button competition-preview-button"
+                      class="button competition-preview-button is-active"
                       type="button"
                       data-preview-type="video"
-                      data-preview-src="ieee_run.mp4">
+                      data-preview-src="ieee_run.mp4"
+                      data-preview-label="Winning competition run"
+                      data-preview-caption="Winning competition run video from the 2026 Region 5 IEEE Robotics Competition."
+                      aria-controls="competitionPreviewArea"
+                      aria-pressed="true">
                       Winning Run
                     </button>
 
@@ -2079,8 +2094,26 @@
                       class="button competition-preview-button"
                       type="button"
                       data-preview-type="image"
-                      data-preview-src="bracket.jpeg">
+                      data-preview-src="bracket.jpeg"
+                      data-preview-label="Competition bracket"
+                      data-preview-alt="Competition bracket for the 2026 Region 5 IEEE Robotics Competition"
+                      data-preview-caption="Competition bracket from the 2026 Region 5 IEEE Robotics Competition."
+                      aria-controls="competitionPreviewArea"
+                      aria-pressed="false">
                       Competition Bracket
+                    </button>
+
+                    <button
+                      class="button competition-preview-button"
+                      type="button"
+                      data-preview-type="image"
+                      data-preview-src="assets/PXL_20260331_152241063.jpg"
+                      data-preview-label="First-place award"
+                      data-preview-alt="First-place award from the 2026 Region 5 IEEE Robotics Competition"
+                      data-preview-caption="First-place award from the 2026 Region 5 IEEE Robotics Competition."
+                      aria-controls="competitionPreviewArea"
+                      aria-pressed="false">
+                      1st Place Award
                     </button>
 
                     <a
@@ -2131,7 +2164,7 @@
                     Your browser does not support the video tag.
                   </video>
 
-                  <p id="competitionPreviewCaption">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition. Hover over or click “Competition Bracket” to show the bracket image here.</p>
+                  <p id="competitionPreviewCaption">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition. Hover over or click a button to show the run, bracket, or award here.</p>
                 </div>
               </div>
 
@@ -2940,32 +2973,50 @@
       });
     }
 
-    function setCompetitionPreview(type, src) {
+    function setCompetitionPreview(button) {
       if (!competitionPreviewArea) return;
+
+      const type = button.dataset.previewType;
+      const src = button.dataset.previewSrc;
+      const label = button.dataset.previewLabel;
+      const caption = button.dataset.previewCaption;
 
       if (type === 'image') {
         competitionPreviewArea.innerHTML = `
           <img
             id="competitionPreviewImage"
-            class="media-thumb"
+            class="media-thumb competition-preview-image"
             src="${src}"
-            alt="Competition bracket for the 2026 Region 5 IEEE Robotics Competition 1st Place Robot"
+            alt="${button.dataset.previewAlt}"
           >
 
-          <p id="competitionPreviewCaption">Competition bracket image. Hover over or click “Winning Run” to return to the run video.</p>
+          <p id="competitionPreviewCaption">${caption}</p>
         `;
       }
 
       if (type === 'video') {
         competitionPreviewArea.innerHTML = `
-          <video id="competitionPreviewVideo" class="media-thumb" controls muted playsinline preload="metadata">
+          <video
+            id="competitionPreviewVideo"
+            class="media-thumb"
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            aria-label="${label}">
             <source src="${src}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
 
-          <p id="competitionPreviewCaption">Winning competition run video from the 2026 Region 5 IEEE Robotics Competition. Hover over or click “Competition Bracket” to show the bracket image here.</p>
+          <p id="competitionPreviewCaption">${caption}</p>
         `;
       }
+
+      competitionPreviewButtons.forEach((previewButton) => {
+        const isActive = previewButton === button;
+        previewButton.classList.toggle('is-active', isActive);
+        previewButton.setAttribute('aria-pressed', String(isActive));
+      });
     }
 
     previewButtons.forEach((button) => {
@@ -3024,15 +3075,15 @@
 
     competitionPreviewButtons.forEach((button) => {
       button.addEventListener('mouseenter', () => {
-        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
+        setCompetitionPreview(button);
       });
 
       button.addEventListener('focus', () => {
-        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
+        setCompetitionPreview(button);
       });
 
       button.addEventListener('click', () => {
-        setCompetitionPreview(button.dataset.previewType, button.dataset.previewSrc);
+        setCompetitionPreview(button);
       });
     });
 
