@@ -1548,6 +1548,16 @@
     .gallery-photo:hover img,
     .gallery-photo:focus-visible img { transform: scale(1.05); }
 
+    .pcb-design-gallery {
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pcb-design-gallery .gallery-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     .project-media-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1562,6 +1572,7 @@
     @media (max-width: 700px) {
       .gallery-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
       .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .pcb-design-gallery .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .project-media-grid { grid-template-columns: 1fr; }
     }
 
@@ -1816,6 +1827,25 @@
     .project-media img {
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(36, 66, 107, 0.08);
+    }
+
+    .project-links .xytheta-video-button.is-active {
+      border-color: #1767c2;
+      background: linear-gradient(135deg, #1767c2, #0f56aa);
+      box-shadow: 0 10px 20px rgba(17, 89, 177, 0.2);
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff;
+    }
+
+    .xytheta-video-stage {
+      display: grid;
+      gap: 10px;
+    }
+
+    .xytheta-video-stage p {
+      display: flex;
+      align-items: center;
+      min-height: 24px;
     }
 
     .resource-list { gap: 14px; }
@@ -2308,33 +2338,60 @@
 
                   <div class="project-links">
                     <a class="button" href="https://cad.onshape.com/documents/99710ea61367c098c58fe9bb/w/cc206207292d60b2c5a2188e/e/6c94991e753072e0ca60ebe1?renderMode=0&amp;uiState=6a29979b3974ee121d6b4724" target="_blank" rel="noopener noreferrer">Open CAD Model</a>
+                    <button
+                      class="button xytheta-video-button is-active"
+                      type="button"
+                      data-video-src="assets/PXL_20261027_033704583%20(2).mp4"
+                      data-video-title="XYTheta Pen Plotter Final Proof of Concept"
+                      data-video-caption="Final pen plotter proof of concept, October 27, 2026."
+                      aria-controls="xythetaPreviewVideo"
+                      aria-pressed="true">
+                      Final Proof of Concept
+                    </button>
+                    <button
+                      class="button xytheta-video-button"
+                      type="button"
+                      data-video-src="https://github.com/kevin-chase-claypool/kevin-chase-claypool.github.io/releases/download/xy-theta-plotter-update2-2026-09-06/PXL_20260906_201430583.1.1.mp4"
+                      data-video-title="XYTheta Pen Plotter September Update"
+                      data-video-caption="XYTheta pen plotter update, September 6, 2026."
+                      aria-controls="xythetaPreviewVideo"
+                      aria-pressed="false">
+                      September 6 Update
+                    </button>
+                    <button
+                      class="button xytheta-video-button"
+                      type="button"
+                      data-video-src="Converter%20(1).mp4"
+                      data-video-title="XYTheta G-code Converter"
+                      data-video-caption="XYTheta SVG-to-G-code application demonstration."
+                      aria-controls="xythetaPreviewVideo"
+                      aria-pressed="false">
+                      G-code Converter
+                    </button>
                   </div>
                 </div>
 
-                <div class="project-media">
-                  <div class="project-media-grid">
-                    <div>
-                      <video controls muted playsinline preload="metadata">
-                        <source src="Converter%20(1).mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                      </video>
-                      <p>XYTheta G-code application.</p>
-                    </div>
-
-                    <div>
-                      <video controls muted playsinline preload="metadata">
-                        <source src="https://github.com/kevin-chase-claypool/kevin-chase-claypool.github.io/releases/download/xy-theta-plotter-update2-2026-09-06/PXL_20260906_201430583.1.1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                      </video>
-                      <p>XYTheta pen plotter update, September 6, 2026.</p>
-                    </div>
-                  </div>
+                <div class="project-media xytheta-video-stage">
+                  <video
+                    id="xythetaPreviewVideo"
+                    controls
+                    muted
+                    playsinline
+                    preload="metadata"
+                    aria-label="XYTheta Pen Plotter Final Proof of Concept">
+                    <source
+                      id="xythetaPreviewSource"
+                      src="assets/PXL_20261027_033704583%20(2).mp4"
+                      type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p id="xythetaPreviewCaption" aria-live="polite">Final pen plotter proof of concept, October 27, 2026.</p>
                 </div>
 
-                  <div class="xytheta-progress-gallery" aria-label="XYTheta Pen Plotter build progress gallery">
-                    <div class="gallery-heading">
-                      <span>Build progress</span>
-                    </div>
+                <div class="xytheta-progress-gallery" aria-label="XYTheta Pen Plotter build progress gallery">
+                  <div class="gallery-heading">
+                    <span>Build progress</span>
+                  </div>
 
                   <div class="gallery-grid">
                     <button class="gallery-photo" type="button" data-media-type="image" data-media-src="PXL_20260608_211924723.jpg" data-media-title="XYTheta Pen Plotter Progress, June 8, 2026" aria-label="Open XYTheta Pen Plotter progress photo from June 8, 2026">
@@ -2397,8 +2454,81 @@
     <section class="section" id="board-files">
       <div class="section-card">
         <div class="eyebrow">PCB Design</div>
-        <h2>IEEE Robotics Board Files</h2>
-        <p class="subtitle">Designed in KiCad for a two-plane milling process, with Onshape DXF files imported for accurate 3D model integration.</p>
+        <h2>Various Final PCB designs</h2>
+        <p class="subtitle">Final PCB designs developed in KiCad, with Onshape DXF files imported for accurate 3D model integration.</p>
+
+        <div class="pcb-design-gallery" aria-label="Various final PCB designs gallery">
+          <div class="gallery-heading">
+            <span>Final PCB designs</span>
+            <p>Click any board image to view it larger.</p>
+          </div>
+
+          <div class="gallery-grid">
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260306_175742298.jpg"
+              data-media-title="Final PCB Design 1"
+              aria-label="Open final PCB design 1">
+              <img src="assets/PXL_20260306_175742298.jpg" alt="Final PCB design 1" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260306_175723959%20(1).jpg"
+              data-media-title="Final PCB Design 2"
+              aria-label="Open final PCB design 2">
+              <img src="assets/PXL_20260306_175723959%20(1).jpg" alt="Final PCB design 2" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260910_135823168.jpg"
+              data-media-title="Final PCB Design 3"
+              aria-label="Open final PCB design 3">
+              <img src="assets/PXL_20260910_135823168.jpg" alt="Final PCB design 3" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260306_175730525%20(1).jpg"
+              data-media-title="Final PCB Design 4"
+              aria-label="Open final PCB design 4">
+              <img src="assets/PXL_20260306_175730525%20(1).jpg" alt="Final PCB design 4" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260305_201613101%20(1).jpg"
+              data-media-title="Final PCB Design 5"
+              aria-label="Open final PCB design 5">
+              <img src="assets/PXL_20260305_201613101%20(1).jpg" alt="Final PCB design 5" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260305_201620202.jpg"
+              data-media-title="Final PCB Design 6"
+              aria-label="Open final PCB design 6">
+              <img src="assets/PXL_20260305_201620202.jpg" alt="Final PCB design 6" loading="lazy">
+            </button>
+            <button
+              class="gallery-photo"
+              type="button"
+              data-media-type="image"
+              data-media-src="assets/PXL_20260305_152826332.jpg"
+              data-media-title="Final PCB Design 7"
+              aria-label="Open final PCB design 7">
+              <img src="assets/PXL_20260305_152826332.jpg" alt="Final PCB design 7" loading="lazy">
+            </button>
+          </div>
+        </div>
 
         <div class="resource-list">
           <div class="resource-item">
@@ -2623,10 +2753,16 @@
     const mediaTriggers = document.querySelectorAll('.hover-popup-trigger[data-media-type], .gallery-photo[data-media-type]');
     const galleryPhotos = Array.from(document.querySelectorAll('.gallery-photo[data-media-type]'));
     let activeGalleryIndex = -1;
+    let activeGalleryPhotos = [];
 
     const scaraPreviewVideo = document.getElementById('scaraPreviewVideo');
     const scaraPreviewSource = document.getElementById('scaraPreviewSource');
     const scaraVideoButtons = document.querySelectorAll('.scara-video-button');
+
+    const xythetaPreviewVideo = document.getElementById('xythetaPreviewVideo');
+    const xythetaPreviewSource = document.getElementById('xythetaPreviewSource');
+    const xythetaPreviewCaption = document.getElementById('xythetaPreviewCaption');
+    const xythetaVideoButtons = document.querySelectorAll('.xytheta-video-button');
 
     const competitionPreviewArea = document.getElementById('competitionPreviewArea');
     const competitionPreviewButtons = document.querySelectorAll('.competition-preview-button');
@@ -2707,8 +2843,9 @@
       }
     }
 
-    function setGalleryNavigation(index) {
+    function setGalleryNavigation(index, photos = []) {
       activeGalleryIndex = index;
+      activeGalleryPhotos = index >= 0 ? photos : [];
       const isGalleryPhoto = index >= 0;
 
       previousMediaButton.hidden = !isGalleryPhoto;
@@ -2716,14 +2853,14 @@
 
       if (isGalleryPhoto) {
         previousMediaButton.disabled = index === 0;
-        nextMediaButton.disabled = index === galleryPhotos.length - 1;
+        nextMediaButton.disabled = index === activeGalleryPhotos.length - 1;
       }
     }
 
-    function openMediaModal(type, src, titleText, galleryIndex = -1) {
+    function openMediaModal(type, src, titleText, galleryIndex = -1, photos = []) {
       mediaModalTitle.textContent = titleText;
       mediaModalContent.innerHTML = '';
-      setGalleryNavigation(galleryIndex);
+      setGalleryNavigation(galleryIndex, photos);
 
       if (type === 'image') {
         const img = document.createElement('img');
@@ -2745,16 +2882,24 @@
       updateBodyModalState();
     }
 
-    function showGalleryPhoto(index) {
-      const photo = galleryPhotos[index];
+    function showGalleryPhoto(index, photos = activeGalleryPhotos) {
+      const photo = photos[index];
       if (!photo) return;
 
       openMediaModal(
         photo.dataset.mediaType,
         photo.dataset.mediaSrc,
         photo.dataset.mediaTitle,
-        index
+        index,
+        photos
       );
+    }
+
+    function getTriggerGallery(trigger) {
+      const gallery = trigger.closest('.gallery-grid');
+      if (!gallery) return galleryPhotos;
+
+      return Array.from(gallery.querySelectorAll('.gallery-photo[data-media-type]'));
     }
 
     function closeMediaModal() {
@@ -2772,6 +2917,27 @@
         scaraPreviewSource.setAttribute('src', videoSrc);
         scaraPreviewVideo.load();
       }
+    }
+
+    function setXYThetaPreview(button) {
+      if (!xythetaPreviewVideo || !xythetaPreviewSource) return;
+
+      const videoSrc = button.dataset.videoSrc;
+      if (xythetaPreviewSource.getAttribute('src') !== videoSrc) {
+        xythetaPreviewSource.setAttribute('src', videoSrc);
+        xythetaPreviewVideo.load();
+      }
+
+      xythetaPreviewVideo.setAttribute('aria-label', button.dataset.videoTitle);
+      if (xythetaPreviewCaption) {
+        xythetaPreviewCaption.textContent = button.dataset.videoCaption;
+      }
+
+      xythetaVideoButtons.forEach((videoButton) => {
+        const isActive = videoButton === button;
+        videoButton.classList.toggle('is-active', isActive);
+        videoButton.setAttribute('aria-pressed', String(isActive));
+      });
     }
 
     function setCompetitionPreview(type, src) {
@@ -2816,10 +2982,11 @@
 
     mediaTriggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
-        const galleryIndex = galleryPhotos.indexOf(trigger);
+        const triggerGallery = getTriggerGallery(trigger);
+        const galleryIndex = triggerGallery.indexOf(trigger);
 
         if (galleryIndex >= 0) {
-          showGalleryPhoto(galleryIndex);
+          showGalleryPhoto(galleryIndex, triggerGallery);
         } else {
           openMediaModal(
             trigger.dataset.mediaType,
@@ -2839,6 +3006,20 @@
         setScaraPreview(button.dataset.videoSrc);
       });
 
+    });
+
+    xythetaVideoButtons.forEach((button) => {
+      button.addEventListener('mouseenter', () => {
+        setXYThetaPreview(button);
+      });
+
+      button.addEventListener('focus', () => {
+        setXYThetaPreview(button);
+      });
+
+      button.addEventListener('click', () => {
+        setXYThetaPreview(button);
+      });
     });
 
     competitionPreviewButtons.forEach((button) => {
@@ -2880,7 +3061,7 @@
           return;
         }
 
-        if (event.key === 'ArrowRight' && activeGalleryIndex < galleryPhotos.length - 1) {
+        if (event.key === 'ArrowRight' && activeGalleryIndex < activeGalleryPhotos.length - 1) {
           event.preventDefault();
           showGalleryPhoto(activeGalleryIndex + 1);
           return;
