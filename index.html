@@ -1687,7 +1687,10 @@
     }
 
     .hero-identity h1 {
+      font-size: clamp(2.25rem, 3.2vw, 3rem);
+      line-height: 1;
       margin-bottom: 12px;
+      white-space: nowrap;
     }
 
     .hero-identity .headline {
@@ -1940,15 +1943,19 @@
       .hero { padding: 26px 22px; }
       h1 { font-size: clamp(2.25rem, 11vw, 3.15rem); }
       .hero-identity {
-        grid-template-columns: 116px minmax(0, 1fr);
+        grid-template-columns: 1fr;
         gap: 16px;
         align-items: start;
         margin-bottom: 16px;
       }
-      .hero-portrait { padding: 4px; border-radius: 18px; }
+      .hero-portrait {
+        width: 108px;
+        padding: 4px;
+        border-radius: 18px;
+      }
       .hero-portrait img { border-radius: 14px; }
       .hero-identity h1 {
-        font-size: clamp(2rem, 9vw, 2.55rem);
+        font-size: clamp(1.35rem, 6vw, 1.9rem);
         line-height: 1.03;
       }
       .site-nav-links { gap: 0; }
